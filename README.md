@@ -7,16 +7,15 @@
 
 ### Sample
 ```cs
-/// <summary>
-/// 日付を和暦に変換します。
-/// </summary>
-/// <param name="sender"></param>
-/// <param name="e"></param>
-private void dateTimePicker_ValueChanged(object sender, EventArgs e)
-{
-    JapaneseDate jpd = new JapaneseDate(dateTimePicker.Value);
-    lblDateRetDate.Text = jpd.Date;
-}
+JapaneseDate jpd = new JapaneseDate(DateTime.Now);
+Console.WriteLine(jpd.NendoDate); // 平成28年1月1日
+
+jpd = new JapaneseDate("H280101");
+Console.WriteLine(jpd.NendoDate); // 平成28年1月1日
+
+jpd = new JapaneseDate(4280101);
+Console.WriteLine(jpd.NendoDate); // 平成28年1月1日
+
 ```
 
 ## テスト環境
