@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using JapaneseDateClass.Class;
 
 namespace JapaneseDateClass
 {
@@ -17,17 +11,27 @@ namespace JapaneseDateClass
             InitializeComponent();
         }
 
+        /// <summary>
+        /// 日付を和暦に変換します。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dateTimePicker_ValueChanged(object sender, EventArgs e)
         {
-            JapaneseDateClass.Class.JapaneseDate jpd = new Class.JapaneseDate(dateTimePicker.Value);
+            JapaneseDate jpd = new JapaneseDate(dateTimePicker.Value);
             lblDateRetDate.Text = jpd.Date;
         }
 
+        /// <summary>
+        /// 日付を和暦に変換します。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnStrConv_Click(object sender, EventArgs e)
         {
-            JapaneseDateClass.Class.JapaneseDate jpd = new Class.JapaneseDate(DateTime.Now);
+            JapaneseDate jpd = new JapaneseDate(DateTime.Now);
 
-            if (jpd.SetData(txtDateString.Text) == Class.JapaneseDate.DateStatus.Success)
+            if (jpd.SetData(txtDateString.Text) == JapaneseDate.DateStatus.Success)
             {
                 lblDateRetString.Text = jpd.Date;
             }
