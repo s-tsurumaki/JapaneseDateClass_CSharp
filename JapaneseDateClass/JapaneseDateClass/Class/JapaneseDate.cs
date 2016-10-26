@@ -344,6 +344,164 @@ namespace JapaneseDateClass.Class
             }
         }
         #endregion
+        #region Add (このインスタンスの値に、指定された DateTime の値を加算した新しい TimeSpan を返します。)
+        /// <summary>
+        /// このインスタンスの値に、指定された DateTime の値を加算した新しい TimeSpan を返します。
+        /// </summary>
+        /// <param name="value">正または負の時間間隔。</param>
+        /// <returns>このインスタンスで表された日付と時刻に value で表された時間間隔を加算した値を保持するオブジェクト。</returns>
+        public DateTime Add(TimeSpan value)
+        {
+            switch (this.SetData(this.TargetDate.Add(value)))
+            {
+                case DateStatus.None:
+                    break;
+                case DateStatus.Success:
+                    break;
+                case DateStatus.RegexIsMatchError:
+                    break;
+                case DateStatus.ConversionImpossible:
+                    break;
+                case DateStatus.Error_NendoRenge:
+                    break;
+                case DateStatus.Error_Fatal:
+                    break;
+                default:
+                    break;
+            }
+            return this.TargetDate;
+        }
+        #endregion
+        #region AddDays(このインスタンスの値に、指定された日数を加算した新しい DateTime を返します。)
+        /// <summary>
+        /// このインスタンスの値に、指定された日数を加算した新しい DateTime を返します。
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns>このインスタンスで表された日付と時刻に value で表された年数を加算した値を保持するオブジェクト。</returns>
+        public DateTime AddDays(double value)
+        {
+            switch (this.SetData(this.TargetDate.AddDays(value)))
+            {
+                case DateStatus.None:
+                    break;
+                case DateStatus.Success:
+                    break;
+                case DateStatus.RegexIsMatchError:
+                    break;
+                case DateStatus.ConversionImpossible:
+                    break;
+                case DateStatus.Error_NendoRenge:
+                    break;
+                case DateStatus.Error_Fatal:
+                    break;
+                default:
+                    break;
+            }
+            return this.TargetDate;
+        }
+        #endregion
+        #region AddYears (このインスタンスの値に、指定された年数を加算した新しい DateTime を返します。)
+        /// <summary>
+        /// このインスタンスの値に、指定された年数を加算した新しい DateTime を返します。
+        /// </summary>
+        /// <param name="value">年数。 value パラメーターは、正または負のどちらの場合もあります。</param>
+        /// <returns>このインスタンスで表された日付と時刻に value で表された年数を加算した値を保持するオブジェクト。</returns>
+        public DateTime AddYears(int value)
+        {
+            switch (this.SetData(this.TargetDate.AddYears(value)))
+            {
+                case DateStatus.None:
+                    break;
+                case DateStatus.Success:
+                    break;
+                case DateStatus.RegexIsMatchError:
+                    break;
+                case DateStatus.ConversionImpossible:
+                    break;
+                case DateStatus.Error_NendoRenge:
+                    break;
+                case DateStatus.Error_Fatal:
+                    break;
+                default:
+                    break;
+            }
+            return this.TargetDate;
+        }
+        #endregion
+        #region AddMonths (このインスタンスの値に、指定された月数を加算した新しい DateTime を返します。)
+        /// <summary>
+        /// このインスタンスの値に、指定された月数を加算した新しい DateTime を返します。
+        /// </summary>
+        /// <param name="months">月数。 months パラメーターは、正または負のどちらの場合もあります。</param>
+        /// <returns>このインスタンスで表された日付と時刻に months を加算した値を保持するオブジェクト。</returns>
+        public DateTime AddMonths(int months)
+        {
+            switch (this.SetData(this.TargetDate.AddMonths(months)))
+            {
+                case DateStatus.None:
+                    break;
+                case DateStatus.Success:
+                    break;
+                case DateStatus.RegexIsMatchError:
+                    break;
+                case DateStatus.ConversionImpossible:
+                    break;
+                case DateStatus.Error_NendoRenge:
+                    break;
+                case DateStatus.Error_Fatal:
+                    break;
+                default:
+                    break;
+            }
+            return this.TargetDate;
+        }
+        #endregion
+        #region Compare (JapaneseDate の 2 つのインスタンスを比較し、第 1 のインスタンスが第 2 のインスタンスよりも前か、同じか、それとも後かを示す整数を返します。)
+        /// <summary>
+        /// JapaneseDate の 2 つのインスタンスを比較し、第 1 のインスタンスが第 2 のインスタンスよりも前か、同じか、それとも後かを示す整数を返します。
+        /// </summary>
+        /// <param name="t1">比較する最初のオブジェクト。</param>
+        /// <param name="t2">比較する 2 番目のオブジェクト。</param>
+        /// <returns>t1 と t2 の相対値を示す符号付き数値。値型状態0 より小さい値t1 が t2 よりも前の日時です。0t1 は t2 と同じです。0 を超える値t1 が t2 より後の日時です。</returns>
+        public static int Compare(JapaneseDate t1, JapaneseDate t2)
+        {
+            return DateTime.Compare(t1.DateTime, t2.DateTime);
+        }
+        #endregion
+        #region Compare (DateTime の 2 つのインスタンスを比較し、第 1 のインスタンスが第 2 のインスタンスよりも前か、同じか、それとも後かを示す整数を返します。)
+        /// <summary>
+        /// DateTime の 2 つのインスタンスを比較し、第 1 のインスタンスが第 2 のインスタンスよりも前か、同じか、それとも後かを示す整数を返します。
+        /// </summary>
+        /// <param name="t1">比較する最初のオブジェクト。</param>
+        /// <param name="t2">比較する 2 番目のオブジェクト。</param>
+        /// <returns>t1 と t2 の相対値を示す符号付き数値。値型状態0 より小さい値t1 が t2 よりも前の日時です。0t1 は t2 と同じです。0 を超える値t1 が t2 より後の日時です。</returns>
+        public static int Compare(DateTime t1, DateTime t2)
+        {
+            return DateTime.Compare(t1, t2);
+        }
+        #endregion
+        #region CompareTo (このインスタンスの値と指定した System.DateTime の値を比較し、このインスタンスの値が指定した System.DateTime の値よりも前か、同じか、または後かを示す整数を返します。)
+        /// <summary>
+        /// このインスタンスの値と指定した System.DateTime の値を比較し、このインスタンスの値が指定した System.DateTime の値よりも前か、同じか、または後かを示す整数を返します。
+        /// </summary>
+        /// <param name="value">現在のインスタンスと比較する対象のオブジェクト。</param>
+        /// <returns>このインスタンスと value パラメーターの相対値を示す符号付き数値。値説明0 より小さい値このインスタンスは value より前の時刻を表しています。0このインスタンスは value と同じです。0 を超える値このインスタンスは value より後の時刻を表しています。</returns>
+        public int CompareTo(JapaneseDate value)
+        {
+            return this.DateTime.CompareTo(value.DateTime);
+        }
+        #endregion
+        #region CompareTo (このインスタンスの値と指定した System.DateTime の値を比較し、このインスタンスの値が指定した System.DateTime の値よりも前か、同じか、または後かを示す整数を返します。)
+        /// <summary>
+        /// このインスタンスの値と指定した System.DateTime の値を比較し、このインスタンスの値が指定した System.DateTime の値よりも前か、同じか、または後かを示す整数を返します。
+        /// </summary>
+        /// <param name="value">現在のインスタンスと比較する対象のオブジェクト。</param>
+        /// <returns>このインスタンスと value パラメーターの相対値を示す符号付き数値。値説明0 より小さい値このインスタンスは value より前の時刻を表しています。0このインスタンスは value と同じです。0 を超える値このインスタンスは value より後の時刻を表しています。</returns>
+        public int CompareTo(DateTime value)
+        {
+            return this.DateTime.CompareTo(value);
+        }
+        #endregion
         #region Year (このインスタンスで表される日付の年コンポーネントを取得します。)
         /// <summary>
         /// このインスタンスで表される日付を取得します。
@@ -951,6 +1109,5 @@ namespace JapaneseDateClass.Class
         }
         #endregion
         #endregion
-
     }
 }
