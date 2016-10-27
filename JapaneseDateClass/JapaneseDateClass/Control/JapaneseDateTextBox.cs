@@ -16,8 +16,14 @@ namespace JapaneseDateClass.Control
     [Description("和暦テキストボックスです。")]
     class JapaneseDateTextBox : TextBox
     {
-
-        JapaneseDate jpDate;
+        /// <summary>
+        /// テキストボックスの文字列
+        /// </summary>
+        private string textboxString;
+        /// <summary>
+        /// JapaneseDate
+        /// </summary>
+        private JapaneseDate jpDate;
 
         /// <summary>
         /// JapaneseDateTextBox インスタンスを初期化します。
@@ -39,7 +45,7 @@ namespace JapaneseDateClass.Control
 
             if (this.jpDate.Date != "")
             {
-                this.Text = this.jpDate.DateTime.ToString("yyyyMMdd");
+                this.Text = this.textboxString; // 保持しているテキストボックス文字列に差し替える
             }
             else
             {
@@ -55,6 +61,7 @@ namespace JapaneseDateClass.Control
                 case JapaneseDate.DateStatus.None:
                     break;
                 case JapaneseDate.DateStatus.Success:
+                    this.textboxString = this.Text; // 現時点の文字列を保持
                     this.Text = this.jpDate.Date;
                     break;
                 case JapaneseDate.DateStatus.RegexIsMatchError:

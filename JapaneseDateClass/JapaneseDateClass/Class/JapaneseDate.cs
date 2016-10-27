@@ -247,7 +247,7 @@ namespace JapaneseDateClass.Class
         /// <summary>
         /// JapaneseDateで表現する元号の種類です。 
         /// </summary>
-        public WarekiFormat WarekiFormatType { get; set; }
+        private WarekiFormat WarekiFormatType { get; set; }
         #endregion
         #region Publicメソッド
         #region コンストラクタ
@@ -310,6 +310,18 @@ namespace JapaneseDateClass.Class
         public DateStatus SetData(string convData)
         {
             return this.SetDataAssort(convData.ToString());
+        }
+        #endregion
+        #region ChangeWarekiFormat (和暦変換した時のフォーマットタイプを変更します。)
+        /// <summary>
+        /// 和暦変換した時のフォーマットタイプを変更します。
+        /// </summary>
+        public WarekiFormat ChangeWarekiFormat
+        {
+            set
+            {
+                this.WarekiFormatType = value;
+            }
         }
         #endregion
         #region GetGengoState (元号とデータ取得タイプから登録している元号の設定値を文字列として返します。)
@@ -1042,8 +1054,7 @@ namespace JapaneseDateClass.Class
                     }
                     break;
             }
-
-
+            
             switch (this.WarekiFormatType)
             {
                 case WarekiFormat.None:
