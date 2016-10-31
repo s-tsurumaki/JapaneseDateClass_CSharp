@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Windows.Forms;
 using JapaneseDateClass.Class;
+using JapaneseDateClass.Test;
+using System.Collections.Generic;
 
 namespace JapaneseDateClass
 {
+
+
     public partial class frmTest : Form
     {
         public frmTest()
@@ -40,6 +44,19 @@ namespace JapaneseDateClass
                 lblDateRetString.Text = "変換できない文字列";
             }
             
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnJapaniseDateLimitLine_Click(object sender, EventArgs e)
+        {
+
+
+
+
         }
     }
 }
