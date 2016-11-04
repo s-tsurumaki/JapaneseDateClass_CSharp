@@ -1,6 +1,9 @@
 # JapaneseDateClassCSharp
 文字、数字、日付を和暦変換します。
 
+## Demo
+![JapaneseDateTextBoxDemo](https://github.com/s-tsurumaki/JapaneseDateClass_CSharp/blob/master/img/JapaneseDateTextBox.gif)
+
 ## 環境・言語
 * Visual Studio 2015
 * C#
