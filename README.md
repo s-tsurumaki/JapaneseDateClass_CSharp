@@ -1,10 +1,11 @@
 # JapaneseDateClassCSharp
 文字、数字、日付を和暦変換します。
 
-## Demo
+# Demo
+### JapaneseDateTextBox
 ![JapaneseDateTextBoxDemo](https://github.com/s-tsurumaki/JapaneseDateClass_CSharp/blob/master/img/JapaneseDateTextBox.gif)
 
-
+### DatetimepickerSample
 ![DatetimepickerSample](https://github.com/s-tsurumaki/JapaneseDateClass_CSharp/blob/master/img/DatetimepickerSample.gif)
 
 ## 環境・言語
