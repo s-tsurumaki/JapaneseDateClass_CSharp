@@ -6,6 +6,8 @@
 ![JapaneseDateTextBoxDemo](https://github.com/s-tsurumaki/JapaneseDateClass_CSharp/blob/master/img/JapaneseDateTextBox.gif)
 
 ### JapaneseDateTextBox(yyyy/mm/dd)
+DateTime.TryParseで成功するものは変換可能です。
+
 ![JPNEraTextBoxEdityyyymmdd](https://github.com/s-tsurumaki/JapaneseDateClass_CSharp/blob/master/img/JPNEraTextBoxEdityyyymmdd.gif)
 
 ### JapaneseDateTextBox(7int)
