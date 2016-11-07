@@ -42,8 +42,11 @@ DateTime.TryParseで成功するものは変換可能です。
 ### JapaneseDateTextBox(7int)
 ![JPNEraTextBoxEdit7int](https://github.com/s-tsurumaki/JapaneseDateClass_CSharp/blob/master/img/JPNEraTextBoxEdit7int.gif)
 
-### DatetimepickerSample
-![DatetimepickerSample](https://github.com/s-tsurumaki/JapaneseDateClass_CSharp/blob/master/img/DatetimepickerSample.gif)
+### JapaneseDateTextBox(7int)
+![JPNEraTextBoxEdit7int](https://github.com/s-tsurumaki/JapaneseDateClass_CSharp/blob/master/img/JPNEraTextBoxEdit7int.gif)
+
+### JPNEraTextBoxEditAlphabet
+![JPNEraTextBoxEditAlphabet](https://github.com/s-tsurumaki/JapaneseDateClass_CSharp/blob/master/img/JPNEraTextBoxEditAlphabet.gif)
 
 ## テスト環境
 直ぐに動作確認お行えるようFormを用意いています。
