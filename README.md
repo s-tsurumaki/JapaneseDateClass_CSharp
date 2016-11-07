@@ -1,51 +1,13 @@
 # JapaneseDateClassCSharp
 文字、数字、日付を和暦変換します。
 
-# Custom Controls
-JapaneseDateTextBox
-
-## Demo
-### JapaneseDateTextBox
-![JapaneseDateTextBoxDemo](https://github.com/s-tsurumaki/JapaneseDateClass_CSharp/blob/master/img/JapaneseDateTextBox.gif)
-
-### JapaneseDateTextBox(yyyy/mm/dd)
-DateTime.TryParseで成功するものは変換可能です。
-
-![JPNEraTextBoxEdityyyymmdd](https://github.com/s-tsurumaki/JapaneseDateClass_CSharp/blob/master/img/JPNEraTextBoxEdityyyymmdd.gif)
-
-## 変換可能な値
-### DateTime
-| DateTime  | Conversion |Remarks|
-| :--- | :---: |------------- |
-| 2016/01/01  | 平成28年1月1日  |日付として変換可能なもの|
-| 2016.01.01  | 平成28年1月1日  |日付として変換可能なもの|
-| 2016/1/1  | 平成28年1月1日  |日付として変換可能なもの|
-| 2016.1.1  | 平成28年1月1日  |日付として変換可能なもの|
-### String
-| String  | Conversion |Remarks|
-| :--- | :---: |------------- |
-| 2016/01/01  | 平成28年1月1日  |日付として変換可能なもの|
-| 2016.01.01  | 平成28年1月1日  |日付として変換可能なもの|
-| 2016/1/1  | 平成28年1月1日  |日付として変換可能なもの|
-| 2016.1.1  | 平成28年1月1日  |日付として変換可能なもの|
-
-### JapaneseDateTextBox(7int)
-![JPNEraTextBoxEdit7int](https://github.com/s-tsurumaki/JapaneseDateClass_CSharp/blob/master/img/JPNEraTextBoxEdit7int.gif)
-
-## 変換可能な値
-### int
-| int  | Conversion |Remarks|
-| :--- | :---: |------------- |
-| 4280101  | 平成28年1月1日  |元号を1～4で表記したもの|
-
-### DatetimepickerSample
-![DatetimepickerSample](https://github.com/s-tsurumaki/JapaneseDateClass_CSharp/blob/master/img/DatetimepickerSample.gif)
-
-## 環境・言語
+# 環境・言語
 * Visual Studio 2015
 * C#
 
-### Sample
+## Sample
+コードでのサンプルです。
+
 ```cs
 JapaneseDate jpd = new JapaneseDate(DateTime.Now);
 Console.WriteLine(jpd.NendoDate); // 平成28年1月1日
@@ -57,6 +19,30 @@ jpd = new JapaneseDate(4280101);
 Console.WriteLine(jpd.NendoDate); // 平成28年1月1日
 
 ```
+
+# Custom Controls
+カスタムコントロールは以下のものが利用可能です。
+
+| Name  | Base |Remarks|
+| :--- | :---: |------------- |
+| JapaneseDateTextBox  | TextBox  ||
+
+# Custom Controls Demo
+カスタムコントロールのデモです
+
+## JapaneseDateTextBox
+![JapaneseDateTextBoxDemo](https://github.com/s-tsurumaki/JapaneseDateClass_CSharp/blob/master/img/JapaneseDateTextBox.gif)
+
+## JapaneseDateTextBox(yyyy/mm/dd)
+DateTime.TryParseで成功するものは変換可能です。
+
+![JPNEraTextBoxEdityyyymmdd](https://github.com/s-tsurumaki/JapaneseDateClass_CSharp/blob/master/img/JPNEraTextBoxEdityyyymmdd.gif)
+
+## JapaneseDateTextBox(7int)
+![JPNEraTextBoxEdit7int](https://github.com/s-tsurumaki/JapaneseDateClass_CSharp/blob/master/img/JPNEraTextBoxEdit7int.gif)
+
+## DatetimepickerSample
+![DatetimepickerSample](https://github.com/s-tsurumaki/JapaneseDateClass_CSharp/blob/master/img/DatetimepickerSample.gif)
 
 ## テスト環境
 直ぐに動作確認お行えるようFormを用意いています。
