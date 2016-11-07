@@ -30,18 +30,19 @@ Console.WriteLine(jpd.NendoDate); // 平成28年1月1日
 # Custom Controls Demo
 カスタムコントロールのデモです
 
-## JapaneseDateTextBox
+### JapaneseDateTextBox
+
 ![JapaneseDateTextBoxDemo](https://github.com/s-tsurumaki/JapaneseDateClass_CSharp/blob/master/img/JapaneseDateTextBox.gif)
 
-## JapaneseDateTextBox(yyyy/mm/dd)
+### JapaneseDateTextBox(yyyy/mm/dd)
 DateTime.TryParseで成功するものは変換可能です。
 
 ![JPNEraTextBoxEdityyyymmdd](https://github.com/s-tsurumaki/JapaneseDateClass_CSharp/blob/master/img/JPNEraTextBoxEdityyyymmdd.gif)
 
-## JapaneseDateTextBox(7int)
+### JapaneseDateTextBox(7int)
 ![JPNEraTextBoxEdit7int](https://github.com/s-tsurumaki/JapaneseDateClass_CSharp/blob/master/img/JPNEraTextBoxEdit7int.gif)
 
-## DatetimepickerSample
+### DatetimepickerSample
 ![DatetimepickerSample](https://github.com/s-tsurumaki/JapaneseDateClass_CSharp/blob/master/img/DatetimepickerSample.gif)
 
 ## テスト環境
