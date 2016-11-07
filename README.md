@@ -5,6 +5,13 @@
 ### JapaneseDateTextBox
 ![JapaneseDateTextBoxDemo](https://github.com/s-tsurumaki/JapaneseDateClass_CSharp/blob/master/img/JapaneseDateTextBox.gif)
 
+### JapaneseDateTextBox(yyyy/mm/dd)
+![JPNEraTextBoxEdityyyymmdd](https://github.com/s-tsurumaki/JapaneseDateClass_CSharp/blob/master/img/JPNEraTextBoxEdityyyymmdd.gif)
+
+### JapaneseDateTextBox(7int)
+![JPNEraTextBoxEdit7int](https://github.com/s-tsurumaki/JapaneseDateClass_CSharp/blob/master/img/JPNEraTextBoxEdit7int.gif)
+
+
 ### DatetimepickerSample
 ![DatetimepickerSample](https://github.com/s-tsurumaki/JapaneseDateClass_CSharp/blob/master/img/DatetimepickerSample.gif)
 
