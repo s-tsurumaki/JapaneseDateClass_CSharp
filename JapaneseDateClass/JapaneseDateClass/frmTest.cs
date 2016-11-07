@@ -8,8 +8,15 @@ namespace JapaneseDateClass
 {
 
 
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class frmTest : Form
     {
+
+        /// <summary>
+        /// 
+        /// </summary>
         public frmTest()
         {
             InitializeComponent();
@@ -54,7 +61,59 @@ namespace JapaneseDateClass
         private void btnJapaniseDateLimitLine_Click(object sender, EventArgs e)
         {
 
+        }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Test.TestUnitItem cxt = new TestUnitItem();
+
+            Console.WriteLine("ChrckString:X99.99.99");
+            foreach (var item in cxt.TestUnit_NendoLimit)
+            {
+                string w = item.ToCharAlphabet_Dot;
+                JapaneseDate jpd = new JapaneseDate(w);
+                cxt.ConsoleWriteLineComparisonData(w,item.Answer, jpd.Date);
+            }
+
+            Console.WriteLine("ChrckString:X99/99/99");
+            foreach (var item in cxt.TestUnit_NendoLimit)
+            {
+                string w = item.ToCharAlphabet_Slash;
+                JapaneseDate jpd = new JapaneseDate(w);
+                cxt.ConsoleWriteLineComparisonData(w, item.Answer, jpd.Date);
+            }
+
+            Console.WriteLine("ChrckString:9999/99/99");
+            foreach (var item in cxt.TestUnit_NendoLimit)
+            {
+                string w = item.ToCharAlphabet_Slash;
+                JapaneseDate jpd = new JapaneseDate(w);
+                cxt.ConsoleWriteLineComparisonData(w, item.Answer, jpd.Date);
+            }
+
+            Console.WriteLine("ChrckString:9999.99.99");
+            foreach (var item in cxt.TestUnit_NendoLimit)
+            {
+                string w = item.ToCharAlphabet_Dot;
+                JapaneseDate jpd = new JapaneseDate(w);
+                cxt.ConsoleWriteLineComparisonData(w, item.Answer, jpd.Date);
+            }
+
+            Console.WriteLine("Chrck7Int:9yyMMdd");
+            foreach (var item in cxt.TestUnit_NendoLimit)
+            {
+                string w = item.To7Int.ToString();
+                JapaneseDate jpd = new JapaneseDate(w);
+                cxt.ConsoleWriteLineComparisonData(w, item.Answer, jpd.Date);
+            }
+
+            Console.WriteLine("Chrck8Int:yyyyMMdd");
+            foreach (var item in cxt.TestUnit_NendoLimit)
+            {
+                string w = item.To8Int.ToString();
+                JapaneseDate jpd = new JapaneseDate(w);
+                cxt.ConsoleWriteLineComparisonData(w, item.Answer, jpd.Date);
+            }
 
 
         }

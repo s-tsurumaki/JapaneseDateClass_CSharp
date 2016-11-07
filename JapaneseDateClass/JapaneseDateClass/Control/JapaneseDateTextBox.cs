@@ -16,6 +16,34 @@ namespace JapaneseDateClass.Control
     [Description("和暦テキストボックスです。")]
     class JapaneseDateTextBox : TextBox
     {
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private enum mode
+        {
+            /// <summary>
+            /// 
+            /// </summary>
+            JapaneseDate,
+            /// <summary>
+            /// 
+            /// </summary>
+            Year,
+            /// <summary>
+            /// 
+            /// </summary>
+            Month,
+            /// <summary>
+            /// 
+            /// </summary>
+            Day,
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private JapaneseDate.DateStatus jpDateState;
         /// <summary>
         /// テキストボックスの文字列
         /// </summary>
@@ -24,6 +52,11 @@ namespace JapaneseDateClass.Control
         /// JapaneseDate
         /// </summary>
         private JapaneseDate jpDate;
+
+        /// <summary>
+        /// 和暦変換失敗時に変更する背景色
+        /// </summary>
+        private Color ErrorBackColor = Color.White;
 
         /// <summary>
         /// JapaneseDateTextBox インスタンスを初期化します。
@@ -42,8 +75,7 @@ namespace JapaneseDateClass.Control
             {
                 return;
             }
-
-            if (this.jpDate.Date != "")
+            else if (this.jpDate.Date != "")
             {
                 this.Text = this.textboxString; // 保持しているテキストボックス文字列に差し替える
             }
@@ -56,30 +88,45 @@ namespace JapaneseDateClass.Control
 
         protected override void OnLostFocus(EventArgs e)
         {
-            switch (this.SetJapaneseDate(this.Text,true))
+            if (this.Text == "") // 文字列を空白にした場合。
             {
-                case JapaneseDate.DateStatus.None:
-                    break;
+                this.jpDate = null;
+                this.BackColor = Color.White;
+                return;
+            }
+            
+            this.jpDateState = this.SetJapaneseDate(this.Text, true);
+
+            switch (this.jpDateState)
+            {
                 case JapaneseDate.DateStatus.Success:
+                    this.BackColor = Color.White;
                     this.textboxString = this.Text; // 現時点の文字列を保持
                     this.Text = this.jpDate.Date;
                     break;
+                case JapaneseDate.DateStatus.None:
                 case JapaneseDate.DateStatus.RegexIsMatchError:
-                    break;
                 case JapaneseDate.DateStatus.ConversionImpossible:
-                    break;
                 case JapaneseDate.DateStatus.Error_NendoRenge:
-                    break;
                 case JapaneseDate.DateStatus.Error_Fatal:
-                    break;
                 default:
+                    this.jpDate = null;
+                    this.BackColor = Color.HotPink;
                     break;
             }
         }
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="date"></param>
+        /// <param name="createInstans"></param>
+        /// <returns></returns>
         private JapaneseDate.DateStatus SetJapaneseDate(string date,bool createInstans)
         {
+            this.textboxString = this.Text;
+
             if (this.jpDate == null)
             {
                 if (createInstans)
@@ -98,6 +145,45 @@ namespace JapaneseDateClass.Control
                 return this.jpDate.SetData(date);
             }
 
+        }
+
+        /// <summary>
+        /// テキストボックス内に入力したデータが日付として認識できればtrueを返します。
+        /// </summary>
+        /// <returns>
+        /// true 日付変換可能
+        /// false 日付変換不可
+        /// </returns>
+        private bool isInputTextisDate
+        {
+            get
+            {
+                return this.jpDateState == JapaneseDate.DateStatus.Success ? true : false;
+            }
+        }
+
+        #region GetJapaneseDate
+        /// <summary>
+        /// JapaneseDate
+        /// </summary>
+        private JapaneseDate GetJapaneseDate
+        {
+            get
+            {
+                return this.jpDate;
+            }
+        }
+        #endregion
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private DateTime? GetDateTime
+        {
+            get
+            {
+                return this.jpDate.DateTime;
+            }
         }
 
     }
