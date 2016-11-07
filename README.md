@@ -5,7 +5,7 @@
 * Visual Studio 2015
 * C#
 
-## Sample
+# Sample
 コードでのサンプルです。
 
 ```cs
