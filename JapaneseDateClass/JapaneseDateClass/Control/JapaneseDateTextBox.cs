@@ -65,6 +65,7 @@ namespace JapaneseDateClass.Control
             : base()
         {
             this.ImeMode = ImeMode.Disable; // IMEを無効にします。
+            this.MaxLength = 12; // 最大入力文字を指定
             //this.jpDate = new JapaneseDate(DateTime.Now);
         }
 

@@ -117,5 +117,16 @@ namespace JapaneseDateClass
 
 
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            JapaneseDate jpd = new JapaneseDate(DateTime.Now);
+
+            jpd.ChangeWarekiFormat = JapaneseDate.WarekiFormat.Wareki_Abbreviation_JP;
+            Console.WriteLine(jpd.Date);
+
+
+
+        }
     }
 }
