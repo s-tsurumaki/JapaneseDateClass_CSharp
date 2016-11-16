@@ -461,7 +461,10 @@ namespace JapaneseDateClass.Class
         /// </summary>
         private WarekiFormat WarekiFormatType { get; set; }
         #endregion
+        
         #region Publicメソッド
+
+        // コンストラクタ
         #region コンストラクタ
         /// <summary>
         /// 日付文字列のコンストラクタです。
@@ -491,111 +494,8 @@ namespace JapaneseDateClass.Class
             this.SetData(data);
         }
         #endregion
-        #region SetData (日付となる値をセットします。)
-        #region SetData DateTime (日付となる値をセットします。)
-        /// <summary>
-        /// 日付となる値をセットします。
-        /// </summary>
-        /// <param name="convData">変換対象となる日付データ</param>
-        /// <returns>変換結果ステータス</returns>
-        public DateStatus SetData(DateTime convData)
-        {
-            return this.SetDataAssort(convData.ToString());
-        }
-        #endregion
-        #region SetData int (日付となる値をセットします。)
-        /// <summary>
-        /// 日付となる値をセットします。
-        /// </summary>
-        /// <param name="convData">変換対象となる日付データ</param>
-        /// <returns>変換結果ステータス</returns>
-        public DateStatus SetData(int convData)
-        {
-            return this.SetDataAssort(convData.ToString());
-        }
-        #endregion
-        #region SetData string (日付となる値をセットします。)
-        /// <summary>
-        /// 日付となる値をセットします。
-        /// </summary>
-        /// <param name="convData">変換対象となる日付データ</param>
-        /// <returns>変換結果ステータス</returns>
-        public DateStatus SetData(string convData)
-        {
-            return this.SetDataAssort(convData.ToString());
-        }
-        #endregion
-        #endregion
-        #region SetDataDefNow
-        /// <summary>
-        /// DateTime.Nowで取得した値をセットします。
-        /// </summary>
-        /// <returns>変換結果ステータス</returns>
-        public DateStatus SetDataDateTimeNow()
-        {
-            return this.SetDataAssort(DateTime.Now.ToString());
-        }
-        /// <summary>
-        /// データベースを扱う日付の最小値をセットします。
-        /// </summary>
-        /// <returns>変換結果ステータス</returns>
-        public DateStatus SetDataDateMin()
-        {
-            return this.SetDataAssort(MinValueToDataBaseDate.ToString());
-        }
-        /// <summary>
-        /// データベースを扱う日付の最大値をセットします。
-        /// </summary>
-        /// <returns>変換結果ステータス</returns>
-        public DateStatus SetDataDateMax()
-        {
-            return this.SetDataAssort(MaxValueToDataBaseDate.ToString());
-        }
-        #endregion
-        #region ChangeWarekiFormat (和暦変換した時のフォーマットタイプを変更します。)
-        /// <summary>
-        /// 和暦変換した時のフォーマットタイプを変更します。
-        /// </summary>
-        public WarekiFormat ChangeWarekiFormat
-        {
-            set
-            {
-                this.WarekiFormatType = value;
-            }
-        }
-        #endregion
-        #region GetGengoState (元号とデータ取得タイプから登録している元号の設定値を文字列として返します。)
-        /// <summary>
-        /// 元号とデータ取得タイプから登録している元号の設定値を文字列として返します。
-        /// </summary>
-        /// <param name="gengo">元号</param>
-        /// <param name="type">取得タイプ</param>
-        /// <returns>登録している元号の設定値</returns>
-        public string GetGengoState(Gengo gengo, DataType type)
-        {
-            int work = (int)gengo;
-
-            switch (type)
-            {
-                case DataType.GengoStartYear:
-                    return GengoStartYear[work].ToString();
-                case DataType.GengoEndYear:
-                    return GengoEndYear[work].ToString();
-                case DataType.GengoStartNendo:
-                    return GengoStartNendo[work].ToString();
-                case DataType.GengoCharAlphabet:
-                    return GengoCharAlphabet[work].ToString();
-                case DataType.GengoCharNum:
-                    return GengoCharNum[work].ToString();
-                case DataType.GengoName:
-                    return GengoName[work].ToString();
-                case DataType.GengoAbbreviation:
-                    return GengoAbbreviation[work].ToString();
-                default:
-                    return "";
-            }
-        }
-        #endregion
+        
+        // DateTime型で使われるメソッド
         #region Add (このインスタンスの値に、指定された DateTime の値を加算した新しい TimeSpan を返します。)
         /// <summary>
         /// このインスタンスの値に、指定された DateTime の値を加算した新しい TimeSpan を返します。
@@ -708,6 +608,114 @@ namespace JapaneseDateClass.Class
             return this.InputDate;
         }
         #endregion
+
+        
+        #region SetData (日付となる値をセットします。)
+        #region SetData DateTime (日付となる値をセットします。)
+        /// <summary>
+        /// 日付となる値をセットします。
+        /// </summary>
+        /// <param name="convData">変換対象となる日付データ</param>
+        /// <returns>変換結果ステータス</returns>
+        public DateStatus SetData(DateTime convData)
+        {
+            return this.SetDataAssort(convData.ToString());
+        }
+        #endregion
+        #region SetData int (日付となる値をセットします。)
+        /// <summary>
+        /// 日付となる値をセットします。
+        /// </summary>
+        /// <param name="convData">変換対象となる日付データ</param>
+        /// <returns>変換結果ステータス</returns>
+        public DateStatus SetData(int convData)
+        {
+            return this.SetDataAssort(convData.ToString());
+        }
+        #endregion
+        #region SetData string (日付となる値をセットします。)
+        /// <summary>
+        /// 日付となる値をセットします。
+        /// </summary>
+        /// <param name="convData">変換対象となる日付データ</param>
+        /// <returns>変換結果ステータス</returns>
+        public DateStatus SetData(string convData)
+        {
+            return this.SetDataAssort(convData.ToString());
+        }
+        #endregion
+        #endregion
+        #region SetDataDefNow
+        /// <summary>
+        /// DateTime.Nowで取得した値をセットします。
+        /// </summary>
+        /// <returns>変換結果ステータス</returns>
+        public DateStatus SetDataDateTimeNow()
+        {
+            return this.SetDataAssort(DateTime.Now.ToString());
+        }
+        /// <summary>
+        /// データベースを扱う日付の最小値をセットします。
+        /// </summary>
+        /// <returns>変換結果ステータス</returns>
+        public DateStatus SetDataDateMin()
+        {
+            return this.SetDataAssort(MinValueToDataBaseDate.ToString());
+        }
+        /// <summary>
+        /// データベースを扱う日付の最大値をセットします。
+        /// </summary>
+        /// <returns>変換結果ステータス</returns>
+        public DateStatus SetDataDateMax()
+        {
+            return this.SetDataAssort(MaxValueToDataBaseDate.ToString());
+        }
+        #endregion
+        #region ChangeWarekiFormat (和暦変換した時のフォーマットタイプを変更します。)
+        /// <summary>
+        /// 和暦変換した時のフォーマットタイプを変更します。
+        /// </summary>
+        public WarekiFormat ChangeWarekiFormat
+        {
+            set
+            {
+                this.WarekiFormatType = value;
+            }
+        }
+        #endregion
+        #region GetGengoState (元号とデータ取得タイプから登録している元号の設定値を文字列として返します。)
+        /// <summary>
+        /// 元号とデータ取得タイプから登録している元号の設定値を文字列として返します。
+        /// </summary>
+        /// <param name="gengo">元号</param>
+        /// <param name="type">取得タイプ</param>
+        /// <returns>登録している元号の設定値</returns>
+        public string GetGengoState(Gengo gengo, DataType type)
+        {
+            int work = (int)gengo;
+
+            switch (type)
+            {
+                case DataType.GengoStartYear:
+                    return GengoStartYear[work].ToString();
+                case DataType.GengoEndYear:
+                    return GengoEndYear[work].ToString();
+                case DataType.GengoStartNendo:
+                    return GengoStartNendo[work].ToString();
+                case DataType.GengoCharAlphabet:
+                    return GengoCharAlphabet[work].ToString();
+                case DataType.GengoCharNum:
+                    return GengoCharNum[work].ToString();
+                case DataType.GengoName:
+                    return GengoName[work].ToString();
+                case DataType.GengoAbbreviation:
+                    return GengoAbbreviation[work].ToString();
+                default:
+                    return "";
+            }
+        }
+        #endregion
+
         #region Compare (JapaneseDate の 2 つのインスタンスを比較し、第 1 のインスタンスが第 2 のインスタンスよりも前か、同じか、それとも後かを示す整数を返します。)
         /// <summary>
         /// JapaneseDate の 2 つのインスタンスを比較し、第 1 のインスタンスが第 2 のインスタンスよりも前か、同じか、それとも後かを示す整数を返します。
@@ -810,32 +818,20 @@ namespace JapaneseDateClass.Class
             }
         }
         #endregion
-
+        #region IsBetweenGengo (元号の範囲内か確認します。)
         /// <summary>
         /// 元号の範囲内か確認します。
         /// </summary>
-        public bool isBetweenGengo
+        public bool IsBetweenGengo
         {
             get
             {
                 return TargetGengo == Gengo.None ? false : true;
             }
         }
-
-        /// <summary>
-        /// 元号の範囲内か確認します。
-        /// </summary>
-        public bool IsGengoCheck
-        {
-            get
-            {
-                return TargetGengo == Gengo.None ? false : true;
-            }
-        }
-
-
-
         #endregion
+
+        // 年月日の数値型
         #region ToDecimal
         #region YearToDecimal (このインスタンスで表される日付の年コンポーネントを取得します。)
         /// <summary>
@@ -880,7 +876,6 @@ namespace JapaneseDateClass.Class
         }
         #endregion
         #endregion
-
         #region ToDouble
         #region YearToDouble (このインスタンスで表される日付の年コンポーネントを取得します。)
         /// <summary>
@@ -926,6 +921,8 @@ namespace JapaneseDateClass.Class
         #endregion
         #endregion
 
+        #endregion
+
         #region ToDateTime (このインスタンスで表される日付の年コンポーネントを取得します。)
         /// <summary>
         /// このインスタンスで表される日付を取得します。
@@ -941,7 +938,23 @@ namespace JapaneseDateClass.Class
         }
         #endregion
 
+
+        // 和暦の年月日
         #region ToString (和暦)
+        #region DateToString (このインスタンスで表される日付の年月日コンポーネントを取得します。)
+        /// <summary>
+        /// このインスタンスで表される日付の年月日コンポーネントを取得します。
+        /// </summary>
+        /// <returns>年</returns>
+        [Description("このインスタンスで表される日付の年コンポーネントを取得します。")]
+        public string DateToString
+        {
+            get
+            {
+                return this.GetJapaneseDateToString(false, GengoType.Name, SplitType.Kanji, true, true, true);
+            }
+        }
+        #endregion
         #region YearToString (このインスタンスで表される日付の年コンポーネントを取得します。)
         /// <summary>
         /// このインスタンスで表される日付の年コンポーネントを取得します。
@@ -986,27 +999,67 @@ namespace JapaneseDateClass.Class
         #endregion
         #endregion
 
+        // 年度の年月日
         #region ToString (年度)
-
-
-
+        #region NendoDateToString (このインスタンスで表される日付の年月日コンポーネントを取得します。)
+        /// <summary>
+        /// このインスタンスで表される日付の年月日コンポーネントを取得します。
+        /// </summary>
+        /// <returns>年度の年月日</returns>
+        [Description("このインスタンスで表される日付の年コンポーネントを取得します。")]
+        public string NendoDateToString
+        {
+            get
+            {
+                return this.GetJapaneseDateToString(true, GengoType.Name, SplitType.Kanji, true, true, true);
+            }
+        }
         #endregion
-
-
-        #region Date (このインスタンスで表される日付の日コンポーネントを取得します。)
+        #region NendoYearToString (このインスタンスで表される日付の年コンポーネントを取得します。)
+        /// <summary>
+        /// このインスタンスで表される日付の年コンポーネントを取得します。
+        /// </summary>
+        /// <returns>年度の年</returns>
+        [Description("このインスタンスで表される日付の年コンポーネントを取得します。")]
+        public string NendoYearToString
+        {
+            get
+            {
+                return this.GetJapaneseDateToString(true, GengoType.Name, SplitType.Kanji, true, false, false);
+            }
+        }
+        #endregion
+        #region NendoMonthToString (このインスタンスで表される日付の月コンポーネントを取得します。)
+        /// <summary>
+        /// このインスタンスで表される日付の月コンポーネントを取得します。
+        /// </summary>
+        /// <returns>月</returns>
+        [Description("このインスタンスで表される日付の月コンポーネントを取得します。")]
+        public string NendoMonthToString
+        {
+            get
+            {
+                return this.GetJapaneseDateToString(true, GengoType.Name, SplitType.Kanji, false, true, false);
+            }
+        }
+        #endregion
+        #region NendoDayTostring (このインスタンスで表される日付の日コンポーネントを取得します。)
         /// <summary>
         /// このインスタンスで表される日付の日コンポーネントを取得します。
         /// </summary>
         /// <returns>日</returns>
         [Description("このインスタンスで表される日付の日コンポーネントを取得します。")]
-        public string Date
+        public string NendoDayTostring
         {
             get
             {
-                return this.InputDate == null ? "" : this.Wareki(false);
+                return this.GetJapaneseDateToString(true, GengoType.Name, SplitType.Kanji, false, false, true);
             }
         }
         #endregion
+        #endregion
+
+        // その他特殊なメソッド
         #region NendoRegexString(年度の正規表現を作成します。)
         /// <summary>
         /// 年度の正規表現を作成します。
@@ -1033,35 +1086,7 @@ namespace JapaneseDateClass.Class
             return NendoRegexBase.Replace(@"【元号】", workRegex);
         }
         #endregion
-        #region NendoYearString (このインスタンスで表される日付の年コンポーネントを取得します。)
-        /// <summary>
-        /// このインスタンスで表される日付の年コンポーネントを取得します。
-        /// </summary>
-        /// <returns>年</returns>
-        [Description("このインスタンスで表される日付の年コンポーネントを取得します。")]
-        public string NendoYearString
-        {
 
-            // TODO:全部作り変える。
-            get
-            {
-
-                // TODO:平成、平、Hの元号のパターン
-
-                string nendo = this.EraYear.ToString();
-
-                // １月から3月までは年を-1する。
-                if (this.MonthToInt.isBetween(1, 3))
-                {
-                    nendo = (this.EraYear - 1).ToString();
-                }
-
-                // 元年表記にする
-                return (nendo.isBetween("0", "1")) ? "元年度" : nendo + "年度";
-
-            }
-        }
-        #endregion
         #region NendoYearInt (このインスタンスで表される日付の年コンポーネントを取得します。)
         /// <summary>
         /// このインスタンスで表される日付の年コンポーネントを取得します。
@@ -1084,20 +1109,6 @@ namespace JapaneseDateClass.Class
             }
         }
         #endregion        
-        //#region NendoMonth (このインスタンスで表される日付の月コンポーネントを取得します。)
-        ///// <summary>
-        ///// このインスタンスで表される日付の月コンポーネントを取得します。
-        ///// </summary>
-        ///// <returns>月</returns>
-        //[Description("このインスタンスで表される日付の月コンポーネントを取得します。")]
-        //public string NendoMonth
-        //{
-        //    get
-        //    {
-        //        return this.JapaneseMonth;
-        //    }
-        //}
-        //#endregion
         #region NendoiDay (このインスタンスで表される日付の日コンポーネントを取得します。)
         /// <summary>
         /// このインスタンスで表される日付の日コンポーネントを取得します。
@@ -1109,20 +1120,6 @@ namespace JapaneseDateClass.Class
             get
             {
                 return this.DayTostring;
-            }
-        }
-        #endregion
-        #region NendoDate (このインスタンスで表される日付の日コンポーネントを取得します。)
-        /// <summary>
-        /// このインスタンスで表される日付の日コンポーネントを取得します。
-        /// </summary>
-        /// <returns>日</returns>
-        [Description("このインスタンスで表される日付の日コンポーネントを取得します。")]
-        public string NendoDate
-        {
-            get
-            {
-                return this.InputDate == null ? "" : this.Wareki(true);
             }
         }
         #endregion
@@ -1185,99 +1182,8 @@ namespace JapaneseDateClass.Class
         }
         #endregion
 
-        /// <summary>
-        /// 和暦の年月を返します。
-        /// </summary>
-        /// <remarks>
-        /// 例：平成99年99月
-        /// </remarks>
-        public string JpnEraYearMonthToString
-        {
-            get
-            {
-                return this.GetJapaneseDateToString(false, GengoType.Name, SplitType.Kanji, true, true, false);
-            }
-        }
-
-        /// <summary>
-        /// 和暦の年を返します。
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        public string JpnEraYearMonthDayToString
-        {
-            get
-            {
-                return this.GetJapaneseDateToString(false, GengoType.Name, SplitType.Kanji, true, true, true);
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public int JpnEraToInt
-        {
-            get
-            {
-                return 0;
-            }
-        }
-
-        public decimal JpnEraToDecimal
-        {
-            get
-            {
-                return 0;
-            }
-        }
-
-
-        /// <summary>
-        /// 文字列の年度を返します。
-        /// </summary>
-        public string NendoToString
-        {
-            get
-            {
-                return "";
-            }
-        }
-
-        /// <summary>
-        /// 文字列の年度を返します。
-        /// </summary>
-        public string NendoDateToString
-        {
-            get
-            {
-                return "";
-            }
-        }
-
-        /// <summary>
-        /// 文字列の年度を返します。
-        /// </summary>
-        public int NendoToInt
-        {
-            get
-            {
-                return 0;
-            }
-        }
-
-
-        /// <summary>
-        /// 数字の年度を返します。
-        /// </summary>
-        public decimal NendoToDecimal
-        {
-            get
-            {
-                return 0;
-            }
-        }
-
+      
+        
         #region privateメソッド
         #region NendoInitializ (初期化を行います。)
         /// <summary>
@@ -1527,102 +1433,7 @@ namespace JapaneseDateClass.Class
             return DateStatus.Success;
         }
         #endregion
-        #region Wareki (登録している日付から和暦を返します。)
-        /// <summary>
-        /// 登録している日付から和暦を返します。
-        /// </summary>
-        /// <returns></returns>
-        private string Wareki(bool nend)
-        {
-            string ret;
-            string wareki;
 
-            // 年度を返す場合
-            if (nend)
-            {
-                wareki = this.EraYear.ToString();
-
-                // １月から3月までは年を-1する。
-                if (this.MonthToInt.isBetween(1, 3))
-                {
-                    wareki = (this.EraYear - 1).ToString();
-                }
-
-                // 元年表記にする
-                wareki = (wareki.isBetween("0", "1")) ? "元年度" : wareki.ToString() + "年度";
-            }
-            else
-            {
-                // 元年表記にする
-                wareki = (this.EraYear.ToString() == "1") ? "元年" : this.EraYear.ToString() + "年";
-            }
-
-            switch (this.WarekiFormatType)
-            {
-                case WarekiFormat.None:
-                case WarekiFormat.Wareki_JP:
-                case WarekiFormat.Wareki_Zero_JP:
-                case WarekiFormat.Wareki_Abbreviation_JP:
-                case WarekiFormat.Wareki_Abbreviation_Zero_JP:
-                case WarekiFormat.Wareki_Alphabet_JP:
-                case WarekiFormat.Wareki_Alphabet_Zero_JP:
-                default:
-                    // 和暦で元号の範囲外の場合西暦を返す
-                    if (this.TargetGengo == Gengo.None)
-                    {
-                        return this.InputDate.ToString("yyyy年M月d日");
-                    }
-                    break;
-            }
-            
-            switch (this.WarekiFormatType)
-            {
-                case WarekiFormat.None:
-                    ret = "";
-                    break;
-                case WarekiFormat.Seireki_JP:
-                    ret = this.InputDate.ToString("yyyy年M月d日");
-                    break;
-                case WarekiFormat.Seireki_Zero_JP:
-                    ret = this.InputDate.ToString("yyyy年MM月dd日");
-                    break;
-                case WarekiFormat.Wareki_JP:
-                    ret = this.GetGengoState(this.TargetGengo, DataType.GengoName) + wareki + this.InputDate.ToString("M月d日");
-                    break;
-                case WarekiFormat.Wareki_Zero_JP:
-                    ret = this.GetGengoState(this.TargetGengo, DataType.GengoName) + wareki + this.InputDate.ToString("MM月dd日");
-                    break;
-                case WarekiFormat.Wareki_Abbreviation_JP:
-                    ret = this.GetGengoState(this.TargetGengo, DataType.GengoAbbreviation) + wareki + this.InputDate.ToString("M月d日");
-                    break;
-                case WarekiFormat.Wareki_Abbreviation_Zero_JP:
-                    ret = this.GetGengoState(this.TargetGengo, DataType.GengoAbbreviation) + wareki + this.InputDate.ToString("MM月dd日");
-                    break;
-                case WarekiFormat.Wareki_Alphabet_JP:
-                    ret = this.GetGengoState(this.TargetGengo, DataType.GengoCharAlphabet) + wareki + this.InputDate.ToString("M月d日");
-                    break;
-                case WarekiFormat.Wareki_Alphabet_Zero_JP:
-                    ret = this.GetGengoState(this.TargetGengo, DataType.GengoCharAlphabet) + wareki + this.InputDate.ToString("MM月dd日");
-                    break;
-                case WarekiFormat.Seireki_Dot:
-                    ret = this.InputDate.ToString("yyyy.M.d");
-                    break;
-                case WarekiFormat.Seireki_Zero_Dot:
-                    ret = this.InputDate.ToString("yyyy.MM.dd");
-                    break;
-                case WarekiFormat.Seireki_Slash:
-                    ret = this.InputDate.ToString("yyyy/M/d");
-                    break;
-                case WarekiFormat.Seireki_Zero_Slash:
-                    ret = this.InputDate.ToString("yyyy/MM/dd");
-                    break;
-                default:
-                    ret = "";
-                    break;
-            }
-            return ret;
-        }
-        #endregion
         #region RegexIsMatch (正規表現で変換可能な日付かチェックします。)
         /// <summary>
         /// 正規表現で変換可能な日付かチェックします。
@@ -1665,7 +1476,7 @@ namespace JapaneseDateClass.Class
             }
 
             // 日付として認識されており、かつ元号の範囲内か
-            if (this.IsGengoCheck == true)
+            if (this.IsBetweenGengo == true)
             {
                 if (year)
                 {
@@ -1830,5 +1641,70 @@ namespace JapaneseDateClass.Class
         }
 
         #endregion
+
+        #region Date (このインスタンスで表される日付の日コンポーネントを取得します。)
+        /// <summary>
+        /// このインスタンスで表される日付の日コンポーネントを取得します。
+        /// </summary>
+        /// <returns>日</returns>
+        [Description("このインスタンスで表される日付の日コンポーネントを取得します。")]
+        public string EraDate
+        {
+            get
+            {
+                string ret;
+
+                switch (WarekiFormatType)
+                {
+                    case WarekiFormat.None:
+                        ret = this.GetJapaneseDateToString(false, GengoType.None, SplitType.None, true, true, true);
+                        break;
+                    case WarekiFormat.Seireki_JP:
+                        ret = this.GetJapaneseDateToString(false, GengoType.None, SplitType.Kanji, true, true, true);
+                        break;
+                    case WarekiFormat.Seireki_Zero_JP:
+                        ret = this.GetJapaneseDateToString(false, GengoType.None, SplitType.Kanji, true, true, true);
+                        break;
+                    case WarekiFormat.Wareki_JP:
+                        ret = this.GetJapaneseDateToString(false, GengoType.Name, SplitType.Kanji, true, true, true);
+                        break;
+                    case WarekiFormat.Wareki_Zero_JP:
+                        ret = this.GetJapaneseDateToString(false, GengoType.Name, SplitType.Kanji, true, true, true);
+                        break;
+                    case WarekiFormat.Wareki_Abbreviation_JP:
+                        ret = this.GetJapaneseDateToString(false, GengoType.Abbreviation, SplitType.Kanji, true, true, true);
+                        break;
+                    case WarekiFormat.Wareki_Abbreviation_Zero_JP:
+                        ret = this.GetJapaneseDateToString(false, GengoType.Abbreviation, SplitType.Kanji, true, true, true);
+                        break;
+                    case WarekiFormat.Wareki_Alphabet_JP:
+                        ret = this.GetJapaneseDateToString(false, GengoType.Alphabet, SplitType.Kanji, true, true, true);
+                        break;
+                    case WarekiFormat.Wareki_Alphabet_Zero_JP:
+                        ret = this.GetJapaneseDateToString(false, GengoType.Alphabet, SplitType.Kanji, true, true, true);
+                        break;
+                    case WarekiFormat.Seireki_Dot:
+                        ret = this.GetJapaneseDateToString(false, GengoType.None, SplitType.Dot, true, true, true);
+                        break;
+                    case WarekiFormat.Seireki_Zero_Dot:
+                        ret = this.GetJapaneseDateToString(false, GengoType.None, SplitType.Dot, true, true, true);
+                        break;
+                    case WarekiFormat.Seireki_Slash:
+                        ret = this.GetJapaneseDateToString(false, GengoType.None, SplitType.Slash, true, true, true);
+                        break;
+                    case WarekiFormat.Seireki_Zero_Slash:
+                        ret = this.GetJapaneseDateToString(false, GengoType.None, SplitType.Slash, true, true, true);
+                        break;
+                    default:
+                        ret = "";
+                        break;
+                }
+
+                return ret;
+            }
+        }
+        #endregion
+
+
     }
 }
