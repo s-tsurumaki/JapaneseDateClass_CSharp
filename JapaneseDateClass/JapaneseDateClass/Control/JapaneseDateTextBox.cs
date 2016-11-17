@@ -183,7 +183,7 @@ namespace JapaneseDateClass.Control
         {
             get
             {
-                return this.jpDate.DateTime;
+                return this.jpDate.InputDate;
             }
         }
 
