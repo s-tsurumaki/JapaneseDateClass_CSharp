@@ -30,7 +30,7 @@ namespace JapaneseDateClass
         private void dateTimePicker_ValueChanged(object sender, EventArgs e)
         {
             JapaneseDate jpd = new JapaneseDate(dateTimePicker.Value);
-            lblDateRetDate.Text = jpd.EraDate;
+            lblDateRetDate.Text = jpd.ToEraString;
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace JapaneseDateClass
 
             if (jpd.SetData(txtDateString.Text) == JapaneseDate.DateStatus.Success)
             {
-                lblDateRetString.Text = jpd.EraDate;
+                lblDateRetString.Text = jpd.ToEraString;
             }
             else
             {
@@ -72,7 +72,7 @@ namespace JapaneseDateClass
             {
                 string w = item.ToCharAlphabet_Dot;
                 JapaneseDate jpd = new JapaneseDate(w);
-                cxt.ConsoleWriteLineComparisonData(w,item.Answer, jpd.EraDate);
+                cxt.ConsoleWriteLineComparisonData(w,item.Answer, jpd.ToEraString);
             }
 
             Console.WriteLine("ChrckString:X99/99/99");
@@ -80,7 +80,7 @@ namespace JapaneseDateClass
             {
                 string w = item.ToCharAlphabet_Slash;
                 JapaneseDate jpd = new JapaneseDate(w);
-                cxt.ConsoleWriteLineComparisonData(w, item.Answer, jpd.EraDate);
+                cxt.ConsoleWriteLineComparisonData(w, item.Answer, jpd.ToEraString);
             }
 
             Console.WriteLine("ChrckString:9999/99/99");
@@ -88,7 +88,7 @@ namespace JapaneseDateClass
             {
                 string w = item.ToCharAlphabet_Slash;
                 JapaneseDate jpd = new JapaneseDate(w);
-                cxt.ConsoleWriteLineComparisonData(w, item.Answer, jpd.EraDate);
+                cxt.ConsoleWriteLineComparisonData(w, item.Answer, jpd.ToEraString);
             }
 
             Console.WriteLine("ChrckString:9999.99.99");
@@ -96,7 +96,7 @@ namespace JapaneseDateClass
             {
                 string w = item.ToCharAlphabet_Dot;
                 JapaneseDate jpd = new JapaneseDate(w);
-                cxt.ConsoleWriteLineComparisonData(w, item.Answer, jpd.EraDate);
+                cxt.ConsoleWriteLineComparisonData(w, item.Answer, jpd.ToEraString);
             }
 
             Console.WriteLine("Chrck7Int:9yyMMdd");
@@ -104,7 +104,7 @@ namespace JapaneseDateClass
             {
                 string w = item.To7Int.ToString();
                 JapaneseDate jpd = new JapaneseDate(w);
-                cxt.ConsoleWriteLineComparisonData(w, item.Answer, jpd.EraDate);
+                cxt.ConsoleWriteLineComparisonData(w, item.Answer, jpd.ToEraString);
             }
 
             Console.WriteLine("Chrck8Int:yyyyMMdd");
@@ -112,7 +112,7 @@ namespace JapaneseDateClass
             {
                 string w = item.To8Int.ToString();
                 JapaneseDate jpd = new JapaneseDate(w);
-                cxt.ConsoleWriteLineComparisonData(w, item.Answer, jpd.EraDate);
+                cxt.ConsoleWriteLineComparisonData(w, item.Answer, jpd.ToEraString);
             }
 
 
@@ -123,7 +123,7 @@ namespace JapaneseDateClass
             JapaneseDate jpd = new JapaneseDate(DateTime.Now);
 
             jpd.ChangeWarekiFormat = JapaneseDate.WarekiFormat.Wareki_Abbreviation_JP;
-            Console.WriteLine(jpd.EraDate);
+            Console.WriteLine(jpd.ToEraString);
 
 
 

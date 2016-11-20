@@ -76,13 +76,13 @@ namespace JapaneseDateClass.Control
             {
                 return;
             }
-            else if (this.jpDate.EraDate != "")
+            else if (this.jpDate.ToEraString != "")
             {
                 this.Text = this.textboxString; // 保持しているテキストボックス文字列に差し替える
             }
             else
             {
-                this.Text = this.jpDate.EraDate.ToString();
+                this.Text = this.jpDate.ToEraString.ToString();
             }
 
         }
@@ -103,7 +103,7 @@ namespace JapaneseDateClass.Control
                 case JapaneseDate.DateStatus.Success:
                     this.BackColor = Color.White;
                     this.textboxString = this.Text; // 現時点の文字列を保持
-                    this.Text = this.jpDate.EraDate;
+                    this.Text = this.jpDate.ToEraString;
                     break;
                 case JapaneseDate.DateStatus.None:
                 case JapaneseDate.DateStatus.RegexIsMatchError:
