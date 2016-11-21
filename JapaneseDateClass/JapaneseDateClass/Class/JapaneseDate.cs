@@ -126,15 +126,15 @@ namespace JapaneseDateClass.Class
             /// <summary>
             /// 元号を正式名称で表します。
             /// </summary>
-            Name,
+            WarekiName,
             /// <summary>
             /// 元号をアルファベット1文字で表します。
             /// </summary>
-            Alphabet,
+            WarekiAlphabet,
             /// <summary>
             /// 元号を略称で表します。
             /// </summary>
-            Abbreviation,
+            WarekiAbbreviation,
             /// <summary>
             /// 元号をすべて西暦と表記します。
             /// </summary>
@@ -163,6 +163,106 @@ namespace JapaneseDateClass.Class
             ///　元号99.99.99
             /// </summary>
             Dot,
+        }
+        #endregion
+        #region YearOutputType (年を表示するか指定します。)
+        /// <summary>
+        /// 年を表示するか指定します。
+        /// </summary>
+        public enum YearOutputType
+        {
+            /// <summary>
+            /// 値を表示します。
+            /// </summary>
+            Display,
+            /// <summary>
+            /// 値を非表示にします。
+            /// </summary>
+            Hide,
+        }
+        #endregion
+        #region MonthOutputType (月を表示するか指定します。)
+        /// <summary>
+        /// 月を表示するか指定します。
+        /// </summary>
+        public enum MonthOutputType
+        {
+            /// <summary>
+            /// 値を表示します。
+            /// </summary>
+            Display,
+            /// <summary>
+            /// 値を非表示にします。
+            /// </summary>
+            Hide,
+        }
+        #endregion
+        #region DayOutputType (日を表示するか指定します。)
+        /// <summary>
+        /// 日を表示するか指定します。
+        /// </summary>
+        public enum DayOutputType
+        {
+            /// <summary>
+            /// 値を表示します。
+            /// </summary>
+            Display,
+            /// <summary>
+            /// 値を非表示にします。
+            /// </summary>
+            Hide,
+        }
+        #endregion
+        #region NendoConv (出力する日付文字列を年度として出力するか指定します。)
+        /// <summary>
+        /// 出力する日付文字列を年度として出力するか指定します。
+        /// </summary>
+        public enum NendoConv
+        {
+            /// <summary>
+            /// 和暦として出力します。
+            /// </summary>
+            No,
+            /// <summary>
+            /// 年度として出力します。
+            /// </summary>
+            Yes,
+        }
+        #endregion
+        #region MonthDayZeroPadding (月と日の2桁目の文字をゼロ埋めするか指定します。)
+        /// <summary>
+        /// 月と日の2桁目の文字をゼロ埋めするか指定します。
+        /// </summary>
+        public enum MonthDayZeroPadding
+        {
+            /// <summary>
+            /// ゼロ埋めしません。
+            /// </summary>
+            No,
+            /// <summary>
+            /// ゼロ埋めします。
+            /// </summary>
+            Yes,
+        }
+        #endregion
+        #region GanNenType (元年(元年度)の表記方法を指定します。)
+        /// <summary>
+        /// 元年(元年度)の表記方法を指定します。
+        /// </summary>
+        public enum GanNenType
+        {
+            /// <summary>
+            /// 元年と表記します。
+            /// </summary>
+            Kanji,
+            /// <summary>
+            /// 文字列「1」を出力します。
+            /// </summary>
+            Num,
+            /// <summary>
+            /// 文字列「01」を出力します。
+            /// </summary>
+            NumZeroPadding,
         }
         #endregion
 
@@ -543,43 +643,108 @@ namespace JapaneseDateClass.Class
                 switch (WarekiFormatType)
                 {
                     case WarekiFormat.None:
-                        ret = this.GetJapaneseDateToString(GengoOutputType.None, SplitOutputType.None, true, true, true, false, false);
+                        ret = this.GetJapaneseDateToString(GengoOutputType.None,
+                                                           SplitOutputType.None,
+                                                           YearOutputType.Display,MonthOutputType.Display,DayOutputType.Display,
+                                                           NendoConv.No,
+                                                           GanNenType.Kanji,
+                                                           MonthDayZeroPadding.No);
                         break;
                     case WarekiFormat.Seireki_JP:
-                        ret = this.GetJapaneseDateToString(GengoOutputType.None, SplitOutputType.Kanji, true, true, true, false, false);
+                        ret = this.GetJapaneseDateToString(GengoOutputType.Seireki,
+                                                           SplitOutputType.Kanji,
+                                                           YearOutputType.Display, MonthOutputType.Display, DayOutputType.Display,
+                                                           NendoConv.No,
+                                                           GanNenType.Kanji,
+                                                           MonthDayZeroPadding.No);
                         break;
                     case WarekiFormat.Seireki_Zero_JP:
-                        ret = this.GetJapaneseDateToString(GengoOutputType.None, SplitOutputType.Kanji, true, true, true, false, true);
+                        ret = this.GetJapaneseDateToString(GengoOutputType.Seireki,
+                                                           SplitOutputType.Kanji,
+                                                           YearOutputType.Display, MonthOutputType.Display,DayOutputType.Display,
+                                                           NendoConv.No,
+                                                           GanNenType.Kanji,
+                                                           MonthDayZeroPadding.Yes);
                         break;
                     case WarekiFormat.Wareki_JP:
-                        ret = this.GetJapaneseDateToString(GengoOutputType.Name, SplitOutputType.Kanji, true, true, true, false, false);
+                        ret = this.GetJapaneseDateToString(GengoOutputType.WarekiName,
+                                                           SplitOutputType.Kanji,
+                                                           YearOutputType.Display, MonthOutputType.Display, DayOutputType.Display,
+                                                           NendoConv.No,
+                                                           GanNenType.Kanji,
+                                                           MonthDayZeroPadding.No);
                         break;
                     case WarekiFormat.Wareki_Zero_JP:
-                        ret = this.GetJapaneseDateToString(GengoOutputType.Name, SplitOutputType.Kanji, true, true, true, false, true);
+                        ret = this.GetJapaneseDateToString(GengoOutputType.WarekiName,
+                                                           SplitOutputType.Kanji,
+                                                           YearOutputType.Display, MonthOutputType.Display, DayOutputType.Display,
+                                                           NendoConv.No,
+                                                           GanNenType.Kanji,
+                                                           MonthDayZeroPadding.Yes);
                         break;
                     case WarekiFormat.Wareki_Abbreviation_JP:
-                        ret = this.GetJapaneseDateToString(GengoOutputType.Abbreviation, SplitOutputType.Kanji, true, true, true, false, false);
+                        ret = this.GetJapaneseDateToString(GengoOutputType.WarekiAbbreviation,
+                                                           SplitOutputType.Kanji,
+                                                           YearOutputType.Display, MonthOutputType.Display, DayOutputType.Display,
+                                                           NendoConv.No,
+                                                           GanNenType.Kanji,
+                                                           MonthDayZeroPadding.No);
                         break;
                     case WarekiFormat.Wareki_Abbreviation_Zero_JP:
-                        ret = this.GetJapaneseDateToString(GengoOutputType.Abbreviation, SplitOutputType.Kanji, true, true, true, false, true);
+                        ret = this.GetJapaneseDateToString(GengoOutputType.WarekiAbbreviation,
+                                                           SplitOutputType.Kanji,
+                                                           YearOutputType.Display, MonthOutputType.Display, DayOutputType.Display,
+                                                           NendoConv.No,
+                                                           GanNenType.Kanji,
+                                                           MonthDayZeroPadding.Yes);
                         break;
                     case WarekiFormat.Wareki_Alphabet_JP:
-                        ret = this.GetJapaneseDateToString(GengoOutputType.Alphabet, SplitOutputType.Kanji, true, true, true, false, false);
+                        ret = this.GetJapaneseDateToString(GengoOutputType.WarekiAlphabet,
+                                                           SplitOutputType.Kanji,
+                                                           YearOutputType.Display, MonthOutputType.Display, DayOutputType.Display,
+                                                           NendoConv.No,
+                                                           GanNenType.Kanji,
+                                                           MonthDayZeroPadding.No);
                         break;
                     case WarekiFormat.Wareki_Alphabet_Zero_JP:
-                        ret = this.GetJapaneseDateToString(GengoOutputType.Alphabet, SplitOutputType.Kanji, true, true, true, false, true);
+                        ret = this.GetJapaneseDateToString(GengoOutputType.WarekiAlphabet,
+                                                           SplitOutputType.Kanji,
+                                                           YearOutputType.Display, MonthOutputType.Display, DayOutputType.Display,
+                                                           NendoConv.No,
+                                                           GanNenType.Kanji,
+                                                           MonthDayZeroPadding.Yes);
                         break;
                     case WarekiFormat.Seireki_Dot:
-                        ret = this.GetJapaneseDateToString(GengoOutputType.None, SplitOutputType.Dot, true, true, true, false, false);
+                        ret = this.GetJapaneseDateToString(GengoOutputType.Seireki,
+                                                           SplitOutputType.Dot,
+                                                           YearOutputType.Display, MonthOutputType.Display, DayOutputType.Display,
+                                                           NendoConv.No,
+                                                           GanNenType.Kanji,
+                                                           MonthDayZeroPadding.No);
                         break;
                     case WarekiFormat.Seireki_Zero_Dot:
-                        ret = this.GetJapaneseDateToString(GengoOutputType.None, SplitOutputType.Dot, true, true, true, false, true);
+                        ret = this.GetJapaneseDateToString(GengoOutputType.Seireki,
+                                                           SplitOutputType.Dot,
+                                                           YearOutputType.Display, MonthOutputType.Display, DayOutputType.Display,
+                                                           NendoConv.No,
+                                                           GanNenType.Kanji,
+                                                           MonthDayZeroPadding.Yes);
                         break;
                     case WarekiFormat.Seireki_Slash:
-                        ret = this.GetJapaneseDateToString(GengoOutputType.None, SplitOutputType.Slash, true, true, true, false, false);
+                        ret = this.GetJapaneseDateToString(GengoOutputType.Seireki,
+                                                           SplitOutputType.Slash,
+                                                           YearOutputType.Display, MonthOutputType.Display, DayOutputType.Display,
+                                                           NendoConv.No,
+                                                           GanNenType.Kanji,
+                                                           MonthDayZeroPadding.Yes);
                         break;
                     case WarekiFormat.Seireki_Zero_Slash:
-                        ret = this.GetJapaneseDateToString(GengoOutputType.None, SplitOutputType.Slash, true, true, true, false, true);
+                        ret = this.GetJapaneseDateToString(GengoOutputType.Seireki,
+                                                           SplitOutputType.Slash,
+                                                           YearOutputType.Display, MonthOutputType.Display, DayOutputType.Display,
+                                                           NendoConv.No,
+                                                           GanNenType.Kanji,
+                                                           MonthDayZeroPadding.Yes);
                         break;
                     default:
                         ret = "";
@@ -790,10 +955,11 @@ namespace JapaneseDateClass.Class
         /// <param name="month">月を出力する判定フラグです。</param>
         /// <param name="day">日を出力する判定フラグです。</param>
         /// <param name="nendo">年度に変換する判定フラグです。</param>
+        /// <param name="GanNenTyoe">元年の表記種別です。</param>
         /// <param name="zeroPadding">月と日をゼロ埋めする判定フラグです。</param>
         /// <remarks>入力した日付がnullまたは入力前にコールした場合は空白を返します。</remarks>
         /// <returns>日付変換後の文字列</returns>
-        public string GetJapaneseDateToString(GengoOutputType gengoType, SplitOutputType splitType, bool year, bool month, bool day, bool nendo = false, bool zeroPadding = false)
+        public string GetJapaneseDateToString(GengoOutputType gengoType, SplitOutputType splitType, YearOutputType year, MonthOutputType month, DayOutputType day, NendoConv nendo , GanNenType ganNen, MonthDayZeroPadding zeroPadding)
         {
             string ret;
 
@@ -805,145 +971,113 @@ namespace JapaneseDateClass.Class
                 return ret;
             }
 
-            // 日付として認識されており、かつ元号の範囲内か
-            if (this.IsBetweenGengo == true)
+            // 年を出力する
+            #region 年を出力する
+            if (year == YearOutputType.Display)
             {
-                // 年を出力する
-                if (year)
+                if (gengoType == GengoOutputType.None) // 何も出力しない場合
                 {
-                    // 元号種別
+                    ret += this.Year.ToString();
+                }
+                else if (gengoType == GengoOutputType.Seireki) // 西暦の場合
+                {
+                    ret += "西暦" + this.Year.ToString();
+                }
+                else
+                {
+                    string y = "";
+
+                    if (nendo == NendoConv.No) // 和暦表示
+                    {
+                        // 元号種別が西暦以外の場合は元年表記を取得する
+                        switch (ganNen)
+                        {
+                            case GanNenType.Kanji:
+                                y = this.EraYear.isBetween(0, 1) ? "元" : this.EraYear.ToString();
+                                break;
+                            case GanNenType.Num:
+                                y = this.EraYear.isBetween(0, 1) ? "1" : this.EraYear.ToString();
+                                break;
+                            case GanNenType.NumZeroPadding:
+                                y = this.EraYear.isBetween(0, 1) ? "01" : this.EraYear.ToString();
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    else if (nendo == NendoConv.Yes) // 元年表記
+                    {
+                        // 元年表記+年度の値取得
+                        switch (ganNen)
+                        {
+                            case GanNenType.Kanji:
+                                y = this.Nendo.isBetween(0, 1) ? "元" : this.Nendo.ToString();
+                                break;
+                            case GanNenType.Num:
+                                y = this.Nendo.isBetween(0, 1) ? "1" : this.Nendo.ToString();
+                                break;
+                            case GanNenType.NumZeroPadding:
+                                y = this.Nendo.isBetween(0, 1) ? "01" : this.Nendo.ToString();
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+
+                    // 元号を取得
                     switch (gengoType)
                     {
+                        case GengoOutputType.WarekiName:
+                            ret += this.Era + y;
+                            break;
+                        case GengoOutputType.WarekiAlphabet:
+                            ret += this.EraAlphabet + y;
+                            break;
+                        case GengoOutputType.WarekiAbbreviation:
+                            ret += this.EraAbbreviation + y;
+                            break;
                         case GengoOutputType.None:
-                            break;
-                        case GengoOutputType.Name:
-                            ret += this.Era;
-                            break;
-                        case GengoOutputType.Alphabet:
-                            ret += this.EraAlphabet;
-                            break;
-                        case GengoOutputType.Abbreviation:
-                            ret += this.EraAbbreviation;
-                            break;
+                        case GengoOutputType.Seireki:
                         default:
-                            ret += "";
                             break;
                     }
+                }
 
-                    // 年度として出力する
-                    if (nendo)
-                    {
-                        if (year)
+                // 区切り文字
+                switch (splitType)
+                {
+                    case SplitOutputType.None:
+                        break;
+                    case SplitOutputType.Kanji:
+                        if (nendo == NendoConv.Yes)
                         {
-                            switch (splitType)
-                            {
-                                case SplitOutputType.None:
-                                    break;
-                                case SplitOutputType.Kanji:
-                                case SplitOutputType.Slash:
-                                case SplitOutputType.Dot:
-                                    ret += this.Nendo.ToString();
-                                    if (this.Nendo.isBetween(0, 1))
-                                    {
-                                        ret += "元年度";
-                                    }
-                                    else
-                                    {
-                                        ret += "年度";
-                                    }
-                                    break;
-                            }
+                            ret += "年度";
                         }
-                    }
-                    else
-                    {
-                        ret += this.EraYear.ToString(); // 和暦の年
-
-                        switch (splitType)
+                        else if (nendo == NendoConv.No)
                         {
-                            case SplitOutputType.None:
-                                break;
-                            case SplitOutputType.Kanji:
-                                if (this.Year.isBetween(0, 1))
-                                {
-                                    ret += "元年";
-                                }
-                                else
-                                {
-                                    ret += "年";
-                                }
-                                break;
-                            case SplitOutputType.Slash:
-                                ret += "/";
-                                break;
-                            case SplitOutputType.Dot:
-                                ret += ".";
-                                break;
+                            ret += "年";
                         }
-                    }
+                        break;
+                    case SplitOutputType.Slash:
+                        ret += "/";
+                        break;
+                    case SplitOutputType.Dot:
+                        ret += ".";
+                        break;
+                    default:
+                        break;
                 }
             }
-            else // 年度範囲外の年度の場合
-            {
-                if (nendo)
-                {
-                    if (year)
-                    {
-                        switch (splitType)
-                        {
-                            case SplitOutputType.None:
-                                break;
-                            case SplitOutputType.Kanji:
-                            case SplitOutputType.Slash:
-                            case SplitOutputType.Dot:
-                                ret += this.Nendo.ToString();
-                                if (this.Year.isBetween(0, 1))
-                                {
-                                    ret += "元年度";
-                                }
-                                else
-                                {
-                                    ret += "年度";
-                                }
-                                break;
-                        }
-                    }
-                }
-                else
-                {
-                    if (year)
-                    {
-                        ret += this.Year.ToString();
-                        switch (splitType)
-                        {
-                            case SplitOutputType.None:
-                                break;
-                            case SplitOutputType.Kanji:
-                                ret += "年";
-                                break;
-                            case SplitOutputType.Slash:
-                                ret += "/";
-                                break;
-                            case SplitOutputType.Dot:
-                                ret += ".";
-                                break;
-                        }
-                    }
-                }
-            }
+            #endregion
 
             // 月を出力する
-            if (month)
+            #region 月を出力する
+            if (month == MonthOutputType.Display)
             {
-                if (zeroPadding) // ゼロ埋めする場合
-                {
-                    ret += String.Format("{0:D2}", this.Month);
-                }
-                else
-                {
-                    ret += this.Month.ToString();
-                }
+                // 月をゼロ埋めにする場合
+                ret += zeroPadding == MonthDayZeroPadding.Yes ? this.Month.ToString(): String.Format("{0:D2}", this.Month);
 
+                // 区切り文字に対応した文字を取得
                 switch (splitType)
                 {
                     case SplitOutputType.None:
@@ -959,23 +1093,20 @@ namespace JapaneseDateClass.Class
                         break;
                 }
             }
+            #endregion
 
-            if (day) // 日を出力する場合
+            // 日を出力する
+            #region 日を出力する
+            if (day == DayOutputType.Display)
             {
-                // ゼロ埋めする場合
-                ret += zeroPadding ? String.Format("{0:D2}", this.Day) : this.Day.ToString();
+                // 日の値を代入
+                // ※2桁目をゼロ埋めする場合
+                ret += zeroPadding == MonthDayZeroPadding.Yes ? String.Format("{0:D2}", this.Day) : this.Day.ToString();
 
-                switch (splitType)
-                {
-                    case SplitOutputType.Kanji:
-                        ret += "日";
-                        break;
-                    case SplitOutputType.None:
-                    case SplitOutputType.Slash:
-                    case SplitOutputType.Dot:
-                        break;
-                }
+                // 区切り文字が漢字の場合、日のみ取得する。
+                ret += splitType == SplitOutputType.Kanji ? "日" : "";
             }
+            #endregion
 
             return ret;
         }
@@ -1146,7 +1277,13 @@ namespace JapaneseDateClass.Class
         {
             get
             {
-                return this.GetJapaneseDateToString(GengoOutputType.Name, SplitOutputType.Kanji, true, true, true);
+                // このインスタンスで
+                return this.GetJapaneseDateToString(GengoOutputType.WarekiName,
+                                                    SplitOutputType.Kanji,
+                                                    YearOutputType.Display, MonthOutputType.Display, DayOutputType.Display,
+                                                    NendoConv.No,
+                                                    GanNenType.Kanji,
+                                                    MonthDayZeroPadding.No);
             }
         }
         #endregion
@@ -1160,7 +1297,12 @@ namespace JapaneseDateClass.Class
         {
             get
             {
-                return this.GetJapaneseDateToString(GengoOutputType.Name, SplitOutputType.Kanji, true, false, false);
+                return this.GetJapaneseDateToString(GengoOutputType.WarekiName,
+                                                    SplitOutputType.Kanji,
+                                                    YearOutputType.Display, MonthOutputType.Hide, DayOutputType.Hide,
+                                                    NendoConv.No,
+                                                    GanNenType.Kanji,
+                                                    MonthDayZeroPadding.No);
             }
         }
         #endregion
@@ -1174,7 +1316,12 @@ namespace JapaneseDateClass.Class
         {
             get
             {
-                return this.GetJapaneseDateToString(GengoOutputType.Name, SplitOutputType.Kanji, false, true, false);
+                return this.GetJapaneseDateToString(GengoOutputType.WarekiName,
+                                                    SplitOutputType.Kanji,
+                                                    YearOutputType.Hide, MonthOutputType.Display, DayOutputType.Hide,
+                                                    NendoConv.No,
+                                                    GanNenType.Kanji,
+                                                    MonthDayZeroPadding.No);
             }
         }
         #endregion
@@ -1188,7 +1335,13 @@ namespace JapaneseDateClass.Class
         {
             get
             {
-                return this.InputDate == null ? "" : this.InputDate.Month.ToString();
+                return this.GetJapaneseDateToString(GengoOutputType.WarekiName,
+                                                    SplitOutputType.Kanji,
+                                                    YearOutputType.Hide, MonthOutputType.Display, DayOutputType.Hide,
+                                                    NendoConv.No,
+                                                    GanNenType.Kanji,
+                                                    MonthDayZeroPadding.Yes);
+
             }
         }
         #endregion
@@ -1202,7 +1355,12 @@ namespace JapaneseDateClass.Class
         {
             get
             {
-                return this.GetJapaneseDateToString(GengoOutputType.Name, SplitOutputType.Kanji, false, false, true);
+                return this.GetJapaneseDateToString(GengoOutputType.WarekiName,
+                                                    SplitOutputType.Kanji,
+                                                    YearOutputType.Hide, MonthOutputType.Hide,DayOutputType.Display,
+                                                    NendoConv.No,
+                                                    GanNenType.Kanji,
+                                                    MonthDayZeroPadding.Yes);
             }
         }
         #endregion
@@ -1216,7 +1374,12 @@ namespace JapaneseDateClass.Class
         {
             get
             {
-                return this.InputDate == null ? "" : this.InputDate.Day.ToString();
+                return this.GetJapaneseDateToString(GengoOutputType.WarekiName,
+                                                    SplitOutputType.Kanji,
+                                                    YearOutputType.Hide, MonthOutputType.Hide, DayOutputType.Display,
+                                                    NendoConv.No,
+                                                    GanNenType.Kanji,
+                                                    MonthDayZeroPadding.Yes);
             }
         }
         #endregion
@@ -1234,7 +1397,12 @@ namespace JapaneseDateClass.Class
         {
             get
             {
-                return this.GetJapaneseDateToString(GengoOutputType.Name, SplitOutputType.Kanji, true, true, true, true);
+                return this.GetJapaneseDateToString(GengoOutputType.WarekiName,
+                                                    SplitOutputType.Kanji,
+                                                    YearOutputType.Display, MonthOutputType.Display, DayOutputType.Display,
+                                                    NendoConv.No,
+                                                    GanNenType.Kanji,
+                                                    MonthDayZeroPadding.Yes);
             }
         }
         #endregion
@@ -1248,7 +1416,12 @@ namespace JapaneseDateClass.Class
         {
             get
             {
-                return this.GetJapaneseDateToString(GengoOutputType.Name, SplitOutputType.Kanji, true, false, false, true);
+                return this.GetJapaneseDateToString(GengoOutputType.WarekiName,
+                                                    SplitOutputType.Kanji,
+                                                    YearOutputType.Display, MonthOutputType.Hide, DayOutputType.Hide,
+                                                    NendoConv.No,
+                                                    GanNenType.Kanji,
+                                                    MonthDayZeroPadding.No);
             }
         }
         #endregion
@@ -1262,7 +1435,12 @@ namespace JapaneseDateClass.Class
         {
             get
             {
-                return this.GetJapaneseDateToString(GengoOutputType.Name, SplitOutputType.Kanji, false, true, false, true);
+                return this.GetJapaneseDateToString(GengoOutputType.WarekiName,
+                                                    SplitOutputType.Kanji,
+                                                    YearOutputType.Hide, MonthOutputType.Display, DayOutputType.Hide,
+                                                    NendoConv.No,
+                                                    GanNenType.Kanji,
+                                                    MonthDayZeroPadding.No);
             }
         }
         #endregion
@@ -1276,7 +1454,13 @@ namespace JapaneseDateClass.Class
         {
             get
             {
-                return this.MonthZeroPaddingToString;
+                // このインスタンスで
+                return this.GetJapaneseDateToString(GengoOutputType.WarekiName,
+                                                    SplitOutputType.Kanji,
+                                                    YearOutputType.Hide, MonthOutputType.Display, DayOutputType.Hide,
+                                                    NendoConv.No,
+                                                    GanNenType.Kanji,
+                                                    MonthDayZeroPadding.Yes);
             }
         }
         #endregion
@@ -1290,7 +1474,12 @@ namespace JapaneseDateClass.Class
         {
             get
             {
-                return this.GetJapaneseDateToString(GengoOutputType.Name, SplitOutputType.Kanji, false, false, true, true);
+                return this.GetJapaneseDateToString(GengoOutputType.WarekiName,
+                                                    SplitOutputType.Kanji,
+                                                    YearOutputType.Hide, MonthOutputType.Hide, DayOutputType.Display,
+                                                    NendoConv.Yes,
+                                                    GanNenType.Kanji,
+                                                    MonthDayZeroPadding.No);
             }
         }
         #endregion
@@ -1304,7 +1493,13 @@ namespace JapaneseDateClass.Class
         {
             get
             {
-                return this.DayZeroPaddingToString;
+                // このインスタンスで
+                return this.GetJapaneseDateToString(GengoOutputType.WarekiName,
+                                                    SplitOutputType.Kanji,
+                                                    YearOutputType.Hide, MonthOutputType.Hide, DayOutputType.Display,
+                                                    NendoConv.Yes,
+                                                    GanNenType.Kanji,
+                                                    MonthDayZeroPadding.Yes);
             }
         }
         #endregion
@@ -1343,7 +1538,12 @@ namespace JapaneseDateClass.Class
         {
             get
             {
-                return this.GetJapaneseDateToString(GengoOutputType.None, SplitOutputType.Slash, true, true, true, false, false);
+                return this.GetJapaneseDateToString(GengoOutputType.None,
+                                                    SplitOutputType.Slash,
+                                                    YearOutputType.Display, MonthOutputType.Display, DayOutputType.Display,
+                                                    NendoConv.No,
+                                                    GanNenType.Kanji,
+                                                    MonthDayZeroPadding.Yes);
             }
         }
         #endregion
@@ -1719,7 +1919,12 @@ namespace JapaneseDateClass.Class
         #region GetDataBaseInt
         private int GetDataBaseInt()
         {
-            string date = this.GetJapaneseDateToString(GengoOutputType.None, SplitOutputType.None, true, true, true, false, false);
+            string date = this.GetJapaneseDateToString(GengoOutputType.Seireki,
+                                                       SplitOutputType.None,
+                                                       YearOutputType.Display, MonthOutputType.Display, DayOutputType.Display,
+                                                       NendoConv.No,
+                                                       GanNenType.Kanji,
+                                                       MonthDayZeroPadding.Yes);
 
             if (date == "")
             {
