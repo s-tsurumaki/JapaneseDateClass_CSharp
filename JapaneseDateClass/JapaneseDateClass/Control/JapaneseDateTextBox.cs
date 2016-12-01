@@ -56,8 +56,8 @@ namespace JapaneseDateClass.Control
         /// <summary>
         /// 和暦変換失敗時に変更する背景色
         /// </summary>
-        private Color ErrorBackColor = Color.White;
-
+        private Color ErrorBackColor = Color.HotPink;
+        
         /// <summary>
         /// JapaneseDateTextBox インスタンスを初期化します。
         /// </summary>
@@ -87,6 +87,15 @@ namespace JapaneseDateClass.Control
 
         }
 
+        /// <summary>
+        /// テキストボックスでロストフォーカスした時に発生します。
+        /// </summary>
+        /// <param name="e">EventArgs</param>
+        /// <remarks>
+        /// このイベントについて
+        /// 
+        /// 
+        /// </remarks>
         protected override void OnLostFocus(EventArgs e)
         {
             if (this.Text == "") // 文字列を空白にした場合。
@@ -112,7 +121,7 @@ namespace JapaneseDateClass.Control
                 case JapaneseDate.DateStatus.Error_Fatal:
                 default:
                     this.jpDate = null;
-                    this.BackColor = Color.HotPink;
+                    this.BackColor = this.ErrorBackColor;
                     break;
             }
         }

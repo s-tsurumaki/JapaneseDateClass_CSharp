@@ -32,7 +32,6 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.japaneseDateTextBox1 = new JapaneseDateClass.Control.JapaneseDateTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -43,9 +42,10 @@
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.lblDateRetDate = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
+            this.japaneseDateTextBox1 = new JapaneseDateClass.Control.JapaneseDateTextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -95,14 +95,6 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "Lost";
             this.button1.UseVisualStyleBackColor = true;
-            // 
-            // japaneseDateTextBox1
-            // 
-            this.japaneseDateTextBox1.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.japaneseDateTextBox1.Location = new System.Drawing.Point(103, 15);
-            this.japaneseDateTextBox1.Name = "japaneseDateTextBox1";
-            this.japaneseDateTextBox1.Size = new System.Drawing.Size(100, 19);
-            this.japaneseDateTextBox1.TabIndex = 0;
             // 
             // tabPage2
             // 
@@ -208,6 +200,16 @@
             this.tabPage3.Text = "TestUnit";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(9, 62);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 2;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(9, 32);
@@ -227,15 +229,14 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "label3";
             // 
-            // button3
+            // japaneseDateTextBox1
             // 
-            this.button3.Location = new System.Drawing.Point(9, 62);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.japaneseDateTextBox1.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.japaneseDateTextBox1.Location = new System.Drawing.Point(103, 15);
+            this.japaneseDateTextBox1.MaxLength = 12;
+            this.japaneseDateTextBox1.Name = "japaneseDateTextBox1";
+            this.japaneseDateTextBox1.Size = new System.Drawing.Size(100, 19);
+            this.japaneseDateTextBox1.TabIndex = 0;
             // 
             // frmTest
             // 

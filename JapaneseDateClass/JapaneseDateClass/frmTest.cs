@@ -65,6 +65,9 @@ namespace JapaneseDateClass
 
         private void button2_Click(object sender, EventArgs e)
         {
+            // このテストについて
+
+
             Test.TestUnitItem cxt = new TestUnitItem();
 
             Console.WriteLine("ChrckString:X99.99.99");

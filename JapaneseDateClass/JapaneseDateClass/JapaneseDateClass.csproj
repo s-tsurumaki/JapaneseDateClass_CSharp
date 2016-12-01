@@ -51,6 +51,9 @@
     <Compile Include="Control\JapaneseDateTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Control\Label\JapaneseDateNendoLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="frmTest.cs">
       <SubType>Form</SubType>
     </Compile>
