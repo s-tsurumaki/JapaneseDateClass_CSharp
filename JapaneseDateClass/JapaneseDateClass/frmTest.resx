@@ -117,4 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label2.Text" xml:space="preserve">
+    <value>変換可能な文字の例(区切り文字はスラッシュ/とドット.をサポート)
+2016/1/1【よくある日付】
+H28/1/1【元号がアルファベットのもの】
+4280401【元号の1を明治とした1～4までの元号値】
+428/1/1【元号の1を明治とした1～4までの元号値】
+平成28年1月1日【和暦もdatetimeとして変換可能】
+※サンプルでは日付に変換できないものはenumのステータスを出力しています。</value>
+  </data>
 </root>

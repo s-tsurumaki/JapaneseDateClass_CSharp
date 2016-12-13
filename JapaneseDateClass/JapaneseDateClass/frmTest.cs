@@ -40,17 +40,24 @@ namespace JapaneseDateClass
         /// <param name="e"></param>
         private void btnStrConv_Click(object sender, EventArgs e)
         {
-            JapaneseDate jpd = new JapaneseDate(DateTime.Now);
-
-            if (jpd.SetData(txtDateString.Text) == JapaneseDate.DateStatus.Success)
+            using (JapaneseDate jpd = new JapaneseDate(txtDateString.Text))
             {
-                lblDateRetString.Text = jpd.ToEraString;
+                JapaneseDate.DateStatus s =  jpd.ConversionStatus;
+                switch (s)
+                {
+                    case JapaneseDate.DateStatus.Success:
+                        lblDateRetString.Text = jpd.DateToString;
+                        break;
+                    case JapaneseDate.DateStatus.None:
+                    case JapaneseDate.DateStatus.RegexIsMatchError:
+                    case JapaneseDate.DateStatus.ConversionImpossible:
+                    case JapaneseDate.DateStatus.Error_NendoRenge:
+                    case JapaneseDate.DateStatus.Error_Fatal:
+                    default:
+                        lblDateRetString.Text = s.ToString();
+                        break;
+                }
             }
-            else
-            {
-                lblDateRetString.Text = "変換できない文字列";
-            }
-            
         }
 
         /// <summary>

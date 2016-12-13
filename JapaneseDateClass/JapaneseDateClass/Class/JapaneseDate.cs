@@ -14,7 +14,7 @@ namespace JapaneseDateClass.Class
     /// Era：日本の元号
     /// Nendo：年度の概念
     /// </remarks>
-    public class JapaneseDate
+    public class JapaneseDate : IDisposable
     {
         // 定数
         #region 年度の基本定数
@@ -342,9 +342,9 @@ namespace JapaneseDateClass.Class
         #endregion
 
         // 
-        #region DateStatus (入力された日付変換)
+        #region DateStatus (変換対象の文字が変換できたかを示すステータスコードです)
         /// <summary>
-        /// 日付変換で返す返却値です。
+        /// 変換対象の文字が変換できたかを示すステータスコードです。
         /// </summary>
         public enum DateStatus
         {
@@ -549,6 +549,24 @@ namespace JapaneseDateClass.Class
         public JapaneseDate(int data)
         {
             this.ConversionStatus = this.SetData(data);
+        }
+        #endregion
+
+        // Dispose
+        #region Dispose
+        /// <summary>
+        /// アンマネージ リソースの解放またはリセットに関連付けられているアプリケーション定義のタスクを実行します。
+        /// </summary>
+        public void Dispose()
+        {
+            this.Free();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void Free()
+        {
         }
         #endregion
 
@@ -1710,23 +1728,33 @@ namespace JapaneseDateClass.Class
         /// <returns>変換結果ステータス</returns>
         private DateStatus SetDataAssort(string convData)
         {
-            DateTime tryDate;
-            string workDate;
-            int tryInt;
+            string dt; // 日付変換用変数
 
             this.NendoInitializ(); // 初期化
 
+            // 日付として認識可能な文字列か確認します。
+            // 成功すればリターン値がSuccessと日付文字列を返します。
+            // エラーの場合は元の日付を返します。
+            DateStatus s = this.DatePrepare(convData, out dt);
+            if (s != DateStatus.Success)
+            {
+                return s;
+            }
+
             // 送られてきた文字列は日付に変換できるか。
-            if (DateTime.TryParse(convData, out tryDate))
+            DateTime tryDate; // TryParse用
+            int tryInt;       // TryParse用
+
+            if (DateTime.TryParse(dt, out tryDate))
             {
                 return this.SetDateAndGengou(tryDate);
             }
-            else if (int.TryParse(convData, out tryInt)) // 送られてきた文字列が数値に変換できるか。
+            else if (int.TryParse(dt, out tryInt)) // 送られてきた文字列が数値に変換できるか。
             {
-                if (convData.Length == 7)
+                if (dt.Length == 7)
                 {
                     // 1桁目が1～4か
-                    string charStr = convData.Substring(0, 1);
+                    string charStr = dt.Substring(0, 1);
                     string makeStr = "";
                     bool chkFlg;
 
@@ -1736,7 +1764,7 @@ namespace JapaneseDateClass.Class
                         if (GengoNum[cnt] == charStr)
                         {
                             // 元号99年9999に変換する。
-                            makeStr = GengoName[cnt] + convData.Substring(1, 2) + "年" + convData.Substring(3, 2) + "月" + convData.Substring(5, 2) + "日";
+                            makeStr = GengoName[cnt] + dt.Substring(1, 2) + "年" + dt.Substring(3, 2) + "月" + dt.Substring(5, 2) + "日";
                             chkFlg = false;
                             break;
                         }
@@ -1750,10 +1778,11 @@ namespace JapaneseDateClass.Class
                     return this.SetDataAssortWareki(makeStr);
 
                 }
-                else if (convData.Length == 8)
+                else if (dt.Length == 8)
                 {
+                    string workDate;
                     // yyyy/mm/dd形式に文字列を整える。
-                    workDate = convData.Substring(0, 4) + "/" + convData.Substring(4, 2) + "/" + convData.Substring(6, 2);
+                    workDate = dt.Substring(0, 4) + "/" + dt.Substring(4, 2) + "/" + dt.Substring(6, 2);
 
                     // 送られてきた文字列は日付に変換できるか。
                     if (DateTime.TryParse(workDate, out tryDate))
@@ -1772,12 +1801,12 @@ namespace JapaneseDateClass.Class
             }
 
             // 正規表現チェック
-            if (!this.RegexIsMatch(convData))
+            if (!this.RegexIsMatch(dt))
             {
                 return DateStatus.RegexIsMatchError;
             }
 
-            return this.SetDataAssortWareki(convData);
+            return this.SetDataAssortWareki(dt);
         }
         #endregion
         #region SetDataAssortWareki (和暦日付として妥当か仕分けます。)
@@ -1926,32 +1955,112 @@ namespace JapaneseDateClass.Class
         /// <summary>
         /// 入力された日付文字列を読み込み可能な状態にする前処理を行います。
         /// </summary>
-        /// <returns></returns>
-        private string DatePrepare(string dateStr)
+        /// <param name="inputDate">入力日付</param>
+        /// <param name="returnDate"></param>
+        /// <returns>変換対象の文字が変換できたかを示すステータスコードです。</returns>
+        private DateStatus DatePrepare(string inputDate, out string returnDate)
         {
-            string ret;
+            returnDate = inputDate;
 
-            ret = dateStr;
-
-            // 大文字に変換
-            ret = ret.ToUpper();
-
-            // 年月日を変換
-            ret = ret.Replace(".", "/").Replace("年", "/").Replace("月", "/").Replace("日", "");
-
-            // 元号を記号に変更
-            for (int cnt = (int)Gengo.Min; cnt <= (int)Gengo.Max; cnt++)
+            // 年度は変換しないのでエラー扱いとする。
+            if ((inputDate.LastIndexOf("度") != -1))
             {
-                ret = ret.Replace(GengoName[cnt], GengoAlphabet[cnt]);
-                ret = ret.Replace(GengoAbbreviation[cnt], GengoAlphabet[cnt]);
+                return DateStatus.RegexIsMatchError;
             }
 
-            return ret;
+            // 入力文字Replace変換用
+            string repDate = inputDate;
+
+            // 大文字に変換
+            repDate = repDate.ToUpper();
+
+            // 年月日の区切りを変換
+            repDate = repDate.Replace(".", "/")
+                             .Replace("-", "/")
+                             .Replace("年", "/")
+                             .Replace("月", "/")
+                             .Replace("日", "");
+
+            // 年月日に配列を分割
+            string[] dateSplit = repDate.Split('/');
+
+            // 年月日の3つに配列が分割できなければ日付ではないとみなして入力値を返す。
+            if (dateSplit.Count() != 3)
+            {
+                return DateStatus.ConversionImpossible;
+            }
+
+            // 配列に空白があるものはエラーを返す。
+            foreach (var item in dateSplit)
+            {
+                if (item == "")
+                {
+                    return DateStatus.ConversionImpossible;
+                }
+            }
+
+            // 元の扱い
+            // 年の配列(1つめの配列)には元年が存在するため、この場合のみ1年とみなして変換する。
+            // 複数元がくる場合があるかもしれないが、厳密にしたい場合は特定の文字をカウントするメソッドを用意する。
+            dateSplit[0] = dateSplit[0].Replace("元", "01");
+            // 月日の配列に元がある場合はエラーとする。
+            if ((dateSplit[1].LastIndexOf("元") != -1) || (dateSplit[2].LastIndexOf("元") != -1))
+            {
+                return DateStatus.ConversionImpossible;
+            }
+
+            // 元号をアルファベット記号に変更
+            for (int cnt = (int)Gengo.Min; cnt <= (int)Gengo.Max; cnt++)
+            {
+                repDate = repDate.Replace(GengoName[cnt], GengoAlphabet[cnt]);
+                repDate = repDate.Replace(GengoAbbreviation[cnt], GengoAlphabet[cnt]);
+            }
+
+            // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+            // ■年度シンボル対応                                          ■
+            // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+            // 年の先頭が数字の年度シンボルの場合(例：1が明治、4が平成の場合)
+            // アルファベット記号にReplaceする事ができないので
+            // 3桁の場合は年度シンボルとみなす。
+            int tryInt; // TryParse用
+            if (int.TryParse(dateSplit[0], out tryInt))
+            {
+                // このクラスの仕様上、データベースの下限値(1753年1月1日)を採用しているので以下の範囲の場合シンボルだと判断する
+                if (tryInt.isBetween(100, 431))
+                {
+                    string snbol = dateSplit[0].Substring(0, 1);
+
+                    // 元号をアルファベット記号に変更
+                    for (int cnt = (int)Gengo.Min; cnt <= (int)Gengo.Max; cnt++)
+                    {
+                        snbol = snbol.Replace(GengoNum[cnt], GengoAlphabet[cnt]);
+                    }
+
+                    dateSplit[0] = snbol + dateSplit[0].Substring(1, 2);
+
+                }
+                else
+                {
+                    return DateStatus.ConversionImpossible;
+                }
+            }
+
+
+            // 分割した配列を年/月/日として結合する。
+            returnDate =  dateSplit[0] + "/" + 
+                           String.Format("{0:D2}", Convert.ToInt32(dateSplit[1])) + "/" + 
+                           String.Format("{0:D2}", Convert.ToInt32(dateSplit[2]));
+
+            return DateStatus.Success;
         }
         #endregion
-        
+
         // データベースに格納する値
-        #region GetDataBaseInt
+        #region GetDataBaseInt (このインスタンスの値にセットした日付をデータベースに格納する日付値として返します。)
+        /// <summary>
+        /// このインスタンスの値にセットした日付をデータベースに格納する日付値として返します。
+        /// </summary>
+        /// <returns>日付の数値</returns>
         private int GetDataBaseInt()
         {
             string date = this.GetJapaneseDateToString(GengoOutputType.Seireki,
